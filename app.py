@@ -9,9 +9,10 @@ app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 
 mongo = PyMongo(app)
 
+
 @app.route('/')
 def hello_world():
-    return 'Hello Big beautiful World'
+    return render_template('base.html')
 
 
 if __name__ == "__main__":
