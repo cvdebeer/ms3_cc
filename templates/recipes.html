@@ -1,0 +1,26 @@
+{% extends 'base.html'%} {% block content %}
+
+
+<div class="row">
+{% for category in categories %}
+    <h3><strong>{{categories.category_name}}</strong></h3>
+{% endfor %}
+<div class="row">
+ {% for recipe in recipes %}
+    <div class="col s12 m6 l4">
+      <div class="card">
+        <div class="card-image">
+          <img src="images/sample-1.jpg" width="300px" height="300px">
+          <span class="card-title">{{recipes.recipe_name}}</strong></span>
+          <a href="" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}   
+  </div>
+     
+</div>
+{% endblock %}
