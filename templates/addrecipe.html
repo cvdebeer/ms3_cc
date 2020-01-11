@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+
+<h3>add recipe</h3>
+<div class="row">
+    <form action="" method="POST" class="col s12">
+        <div class="input-field browser-default col s12 m6">
+            <select id="category" name="category_name" class="icons">
+                <option value="" disabled selected>Choose your option</option>
+                {% for cat in categories %}
+                <option value="" data-icon="{{cat.image}}">{{cat.category_name}}</option>
+                {% endfor %}
+            </select>
+            <label>Category</label>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
