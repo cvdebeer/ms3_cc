@@ -14,12 +14,12 @@ mongo = PyMongo(app)
 @app.route('/get_categories')
 def get_categories():
     return render_template('home.html',
-                           categories=mongo.db.categories.find())
+                           categories=mongo.db.categories.find().sort('category_name'))
 
 
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template('addrecipe.html', categories=mongo.db.categories.find())
+    return render_template('addrecipe.html', categories=mongo.db.categories.find().sort('category_name'), ratings=mongo.db.rating.find())
 
 
 if __name__ == "__main__":
