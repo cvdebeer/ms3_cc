@@ -45,7 +45,7 @@
                     <select id="category" name="category_name" class="icons ">
                         <option value="" disabled selected>Choose your Rating</option>
                         {% for rate in ratings %}
-                        <option value="" data-icon="" class="left">{{rate.rated}}</option>
+                        <option value="" data-icon="{{rate.r_image}}">{{rate.rated}}</option>
                         {% endfor %}
                     </select>
                     <label></label>
@@ -127,7 +127,7 @@
                 <br>
                 <br>
                 <div>
-                    <a class="waves-effect waves-light btn-small"><i class="material-icons left">insert_photo</i>Upload
+                    <a class="waves-effect waves-light btn-small"><i class="material-icons left">add_a_photo</i>Upload
                         an image</a>
                 </div>
                 <br>
@@ -150,6 +150,7 @@
                         </button>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
 
