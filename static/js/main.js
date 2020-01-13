@@ -2,8 +2,8 @@ const addIngredient = document.querySelector('#add-ing');
 const plusMethod = document.querySelector('#add-met')
 const addLineIngredient = document.querySelector('#adding-ingredients');
 const addMethod = document.querySelector('#add-method')
-
-
+const pic = document.querySelector('#fileInput');
+const picUpload = document.querySelector('#pic-upload');
 
 
 let ingredients = [];
@@ -30,5 +30,10 @@ function addingMethod() {
         `<ul><li><i class="material-icons left">donut_small</i>${inputMethod}</li></ul>`);
 }
 
+function imageUpload() {
+    pic.click();
+}
+
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
+picUpload.addEventListener('click', imageUpload);
