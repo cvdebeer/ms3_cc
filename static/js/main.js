@@ -1,12 +1,11 @@
 const addIngredient = document.querySelector('#add-ing');
-const addLineIngredient = document.querySelector('#adding-ingredients');
 const plusMethod = document.querySelector('#add-met')
-const addMethod = document.querySelector('add-method')
-const method = document.getElementsByName('method')
+const addLineIngredient = document.querySelector('#adding-ingredients');
+const addMethod = document.querySelector('#add-method')
 
-let amount = document.getElementsByName('amount').values();
-let measurement = document.getElementsByName('measurement').values();
-let ingredient = document.getElementsByName('ingredient').values();
+
+
+
 let ingredients = [];
 let methods = [];
 
@@ -15,17 +14,20 @@ $(document).ready(function () {
 
 });
 
-
 function addIngLine() {
-
+    let amount = document.getElementById('amount').value;
+    let measurement = document.getElementById('measurement').value;
+    let ingredient = document.getElementById('ingredient').value;
     ingredients.push(amount, measurement, ingredient);
-    console.log(ingredients)
+    addLineIngredient.insertAdjacentHTML('beforebegin',
+        `<ul><li><i class="material-icons left">donut_small</i>${amount} ${measurement} ${ingredient}</li></ul>`);
 }
 
 function addingMethod() {
-
-    let inputMethod = document.getElementsByClassName('add-method').value;
-    alert(inputMethod);
+    let inputMethod = document.getElementById('method').value;
+    methods.push(inputMethod)
+    addMethod.insertAdjacentHTML('beforebegin',
+        `<ul><li><i class="material-icons left">donut_small</i>${inputMethod}</li></ul>`);
 }
 
 addIngredient.addEventListener('click', addIngLine);

@@ -75,25 +75,24 @@
                 </div>
                 <div id="adding-ingredients" class="row">
                     <div class="input-field col s2 ">
-                        <input placeholder="1" id="amount" name="amount" type="text" class="ingredients_add">
+                        <input placeholder="1" id="amount" name="amount" type="text">
                         <label for="amount">Amount</label>
                     </div>
-                    <div class="input-field col s3" class="ingredients_add">
-                        <select>
+                    <div class="input-field col s3">
+                        <select id='measurement'>
                             <option value="" disabled selected></option>
-                            <option value="1">cup</option>
-                            <option value="2"></option>g</option>
-                            <option value="3">ml</option>
-                            <option value="4">oz</option>
-                            <option value="5">tbsp</option>
-                            <option value="6">tsp</option>
-                            <option value="7"></option>
+                            <option>cup/s</option>
+                            <option>g</option>
+                            <option>ml</option>
+                            <option>oz</option>
+                            <option>tbsp</option>
+                            <option>tsp</option>
+                            <option></option>
                         </select>
                         <label>Measurement</label>
                     </div>
                     <div class="input-field col s6 ">
-                        <input placeholder="Ingredient" id="ingredient" name="ingredient" type="text"
-                            class="ingredients_add">
+                        <input placeholder="Ingredient" id="ingredient" name="ingredient" type="text">
                         <label for="ingredient">Ingredient</label>
                     </div>
 
@@ -117,9 +116,9 @@
         <div class="row">
             <h3>add method:</h3>
         </div>
-        <div class="row">
+        <div class="row" id="add-method">
             <div class="input-field col s10 ">
-                <input class="add-method" placeholder="Method" id="method" name="method" type="text" class="validate">
+                <input placeholder="Method" id="method" name="method" type="text" class="validate ">
                 <label for="method"></label>
             </div>
             <div>
