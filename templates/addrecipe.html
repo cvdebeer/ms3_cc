@@ -139,7 +139,7 @@
 
         <br>
         <br>
-        <div>
+        <div id='review_recipe'>
             <a class="waves-effect waves-light btn"><i class="material-icons left">arrow_forward</i>Review
                 Recipe</a>
         </div>
@@ -148,17 +148,32 @@
     <div class="review">
         <div class="row">
             <h3>review recipe:</h3>
-
-            <br>
-            <br>
-            <div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit Recipe
-                    <i class="material-icons right">send</i>
-                </button>
+        </div>
+        <div class="container" id="recipe-info">
+            <h4><strong><u id="display-r-n"></u></strong></h4>
+            <div class="row">
+                <span>Number of servings: <span><u id="display-serv"></u></span></span>
+                <span> prep time: <span><u id="display-prep"></u></span></span>
+                <span> cook time: <span><u id="display-cook"></u></span></span>
+            </div>
+            <div class="row">
+                <span>net carbs: <span><u id="display-carb"></u></span></span>
+                <span> fat: <span><u id="display-fat"></u></span></span>
+                <span> protein: <span><u id="display-pro"></u></span></span>
+                <span>per serving</span>
+                <span id="display-rating"></span>
             </div>
         </div>
+        <br>
+        <br>
+        <div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit Recipe
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     </div>
-    </form>
+</div>
+</form>
 </div>
 
 {% endblock %}
