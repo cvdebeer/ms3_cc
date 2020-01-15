@@ -34,11 +34,13 @@
                     <label for="servings"></label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input placeholder="Prep Time" id="prep_time" name="prep_time" type="text" class="validate">
+                    <input placeholder="Prep Time in minutes" id="prep_time" name="prep_time" type="text"
+                        class="validate">
                     <label for="prep_time"></label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input placeholder="Cook Time" id="cook_time" name="cook_time" type="text" class="validate">
+                    <input placeholder="Cook Time in minutes" id="cook_time" name="cook_time" type="text"
+                        class="validate">
                     <label for="cook_time"></label>
                 </div>
                 <div class="input-field col s12 m6">
@@ -73,7 +75,8 @@
                 <div class="row">
                     <h3>add ingredients:</h3>
                 </div>
-                <div id="adding-ingredients" class="row">
+                <ul id="adding-ingredients"></ul>
+                <div class="row">
                     <div class="input-field col s2 ">
                         <input placeholder="1" id="amount" name="amount" type="text" onfocus="this.value=''">
                         <label for="amount">Amount</label>
@@ -117,11 +120,14 @@
         <div class="row">
             <h3>add method:</h3>
         </div>
-        <div class="row" id="add-method">
+        <ol id="add-method"></ol>
+        <div class="row">
             <div class="input-field col s10 ">
                 <input placeholder="Method" id="method" name="method" type="text" class="validate "
                     onfocus="this.value=''">
-                <label for="method"></label>
+                <label for="method">
+
+                </label>
             </div>
             <div>
                 <a id='add-met' class="btn-floating btn-medium waves-effect waves-light red"><i
@@ -131,12 +137,13 @@
         <br>
         <br>
         <div style="height:0px;overflow:hidden">
-            <input type="file" id="fileInput" name="fileInput" />
+            <input type="file" id="fileInput" />
         </div>
+        <img src="" id="preview" width="150px" height="150px">
+        <br>
         <a id='pic-upload' class="waves-effect waves-light btn-small"><i
                 class="material-icons left">add_a_photo</i>Upload
             an image</a>
-
         <br>
         <br>
         <div id='review_recipe'>
@@ -151,17 +158,78 @@
         </div>
         <div class="container" id="recipe-info">
             <h4><strong><u id="display-r-n"></u></strong></h4>
+
             <div class="row">
-                <span>Number of servings: <span><u id="display-serv"></u></span></span>
-                <span> prep time: <span><u id="display-prep"></u></span></span>
-                <span> cook time: <span><u id="display-cook"></u></span></span>
+                <div class="col s5">
+                    <span><strong>serves: </strong><span><u id="display-serv"></u></span></span>
+                </div>
+                <div class="col s5">
+                    <span id="display-rating"><strong>difficulty rating:</strong></span>
+                </div>
+                <div class="col s2">
+                    <a id="edit-info" class="btn-floating btn-small red">
+                        <i class="large material-icons">mode_edit</i>
+                    </a>
+                </div>
             </div>
             <div class="row">
-                <span>net carbs: <span><u id="display-carb"></u></span></span>
-                <span> fat: <span><u id="display-fat"></u></span></span>
-                <span> protein: <span><u id="display-pro"></u></span></span>
-                <span>per serving</span>
-                <span id="display-rating"></span>
+                <div class="col s4">
+                    <span><strong> prep time: </strong><span><u id="display-prep"></u><span> min</span></span></span>
+                </div>
+                <div class="col s4"> <span><strong> cook time: </strong><span><u id="display-cook"></u><span></span>
+                            min</span></span></span>
+                </div>
+                <div class="col s4"> <span><strong> total time: </strong><span><u id="display-total"></u><span>
+                                min</span></span></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s4">
+                    <span><strong>net carbs: </strong><span><u id="display-carb"></u><span> g</span></span></span>
+                </div>
+                <div class="col s2">
+                    <span><strong> fat: </strong><span><u id="display-fat"></u><span> g</span></span></span>
+                </div>
+                <div class="col s6">
+                    <span><strong> protein: </strong><span><u id="display-pro"></u><span> g</span></span></span>
+                    <span><strong> per serving</strong></span>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col s10 m3">
+                    <img src="" id="display-img" class="" height="150px" width="150px">
+                </div>
+                <div class="col s2">
+                    <a id="edit-image" class="btn-floating btn-small red">
+                        <i class="large material-icons">mode_edit</i>
+                    </a>
+                </div>
+                <div class="col s10 m5">
+                    <div>
+                        <ul id="display-ing"></ul>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <a id="edit-ingredients" class="btn-floating btn-small red">
+                        <i class="large material-icons">mode_edit</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s10">
+                    <ol id="display-method"></ol>
+                </div>
+                <div class="col s2">
+                    <a id="edit-methods" class="btn-floating btn-small red">
+                        <i class="large material-icons">mode_edit</i>
+                    </a>
+                </div>
             </div>
         </div>
         <br>
