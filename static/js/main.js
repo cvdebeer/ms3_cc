@@ -12,6 +12,7 @@ const editInfoBtn = document.getElementById('edit-info');
 const editIngBtn = document.getElementById('edit-ingredients');
 const editImgBtn = document.getElementById('edit-image');
 const editMetBtn = document.getElementById('edit-methods');
+const refreshBtn = document.querySelector('#refresh');
 
 let ingredients = [];
 let addLineIngredient = document.querySelector('#adding-ingredients');
@@ -63,7 +64,6 @@ function addIngLine() {
     ingredients.push([amount, measurement, ingredient]);
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
-    console.log(ingredients)
 
 }
 
@@ -131,22 +131,37 @@ function reviewRecipe() {
 
 function editInfo() {
     newRecipe.setAttribute('class', 'visible');
+    addIng.setAttribute('class', 'hidden');
+    addMet.setAttribute('class', 'hidden');
 }
 
 function editIng() {
     addIng.setAttribute('class', 'visible');
+    newRecipe.setAttribute('class', 'hidden');
+    addMet.setAttribute('class', 'hidden');
     addLineIngredient.innerHTML = '';
     return ingredients = [];
 }
 
 function editMet() {
     addMet.setAttribute('class', 'visible');
+    newRecipe.setAttribute('class', 'hidden');
+    addIng.setAttribute('class', 'hidden');
     addMethod.innerHTML = '';
     return methods = [];
 }
 
 function editImg() {
     addMet.setAttribute('class', 'visible');
+    newRecipe.setAttribute('class', 'hidden');
+    addIng.setAttribute('class', 'hidden');
+}
+
+function refreshReview() {
+    reviewRecipe();
+    addMet.setAttribute('class', 'hidden');
+    newRecipe.setAttribute('class', 'hidden');
+    addIng.setAttribute('class', 'hidden');
 }
 
 addIngredient.addEventListener('click', addIngLine);
@@ -159,3 +174,4 @@ editInfoBtn.addEventListener('click', editInfo);
 editIngBtn.addEventListener('click', editIng);
 editMetBtn.addEventListener('click', editMet);
 editImgBtn.addEventListener('click', editImg);
+refreshBtn.addEventListener('click', refreshReview);
