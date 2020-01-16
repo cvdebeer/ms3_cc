@@ -1,20 +1,39 @@
+const newRecipe = document.querySelector('#new_recipe');
+const addIng = document.querySelector('#add_ingredients');
+const addMet = document.querySelector('#add_method');
+const reviewRec = document.querySelector('#review');
 const addIngredient = document.querySelector('#add-ing');
-const plusMethod = document.querySelector('#add-met')
-const addLineIngredient = document.querySelector('#adding-ingredients');
-const addMethod = document.querySelector('#add-method')
-const pic = document.querySelector('#fileInput');
-const picUpload = document.querySelector('#pic-upload');
+const plusMethod = document.querySelector('#add-met');
 const review = document.querySelector('#review_recipe');
 const info = document.querySelector('#recipe-info');
+const ingBtn = document.getElementById('add-ing-btn');
+const metBtn = document.getElementById('add-met-btn');
+const editInfoBtn = document.getElementById('edit-info');
+const editIngBtn = document.getElementById('edit-ingredients');
+const editImgBtn = document.getElementById('edit-image');
+const editMetBtn = document.getElementById('edit-methods');
 
 let ingredients = [];
+let addLineIngredient = document.querySelector('#adding-ingredients');
 let methods = [];
-
+let addMethod = document.querySelector('#adding-method');
+let picUpload = document.querySelector('#pic-upload');
+let pic = document.querySelector('#fileInput');
 
 $(document).ready(function () {
     $('select').formSelect();
 
 });
+
+function addRecipeInfo() {
+    
+
+}
+
+function moveToIng() {
+    newRecipe.setAttribute('class', 'hidden');
+    addIng.setAttribute('class', 'visible');
+}
 
 function addIngLine() {
     let amount = document.getElementById('amount').value;
@@ -23,8 +42,13 @@ function addIngLine() {
     ingredients.push([amount, measurement, ingredient]);
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
-    console.log(ingredients);
+    console.log(ingredients)
 
+}
+
+function moveToMet() {
+    addIng.setAttribute('class', 'hidden');
+    addMet.setAttribute('class', 'visible');
 }
 
 function addingMethod() {
@@ -65,6 +89,9 @@ function imageUpload() {
 }
 
 function reviewRecipe() {
+    reviewRec.setAttribute('class', 'visible');
+    addMet.setAttribute('class', 'hidden');
+
     let name = document.getElementById('recipe_name').value;
     let serve = document.getElementById('servings').value;
     let prep = document.getElementById('prep_time').value;
@@ -74,7 +101,7 @@ function reviewRecipe() {
     let carb = document.getElementById('carbs').value;
     let fats = document.getElementById('fat').value;
     let pro = document.getElementById('protein').value;
-    /* Getting preview of image */
+
 
 
     document.getElementById('display-r-n').innerHTML = name;
@@ -100,8 +127,33 @@ function reviewRecipe() {
 
 }
 
+function editInfo() {
+    newRecipe.setAttribute('class', 'visible');
+}
+
+function editIng() {
+    addIng.setAttribute('class', 'visible');
+    addLineIngredient.innerHTML = '';
+    return ingredients = [];
+}
+
+function editMet() {
+    addMet.setAttribute('class', 'visible');
+    addMethod.innerHTML = '';
+    return methods = [];
+}
+
+function editImg() {
+    addMet.setAttribute('class', 'visible');
+}
 
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
 picUpload.addEventListener('click', imageUpload);
 review.addEventListener('click', reviewRecipe);
+ingBtn.addEventListener('click', moveToIng);
+metBtn.addEventListener('click', moveToMet);
+editInfoBtn.addEventListener('click', editInfo);
+editIngBtn.addEventListener('click', editIng);
+editMetBtn.addEventListener('click', editMet);
+editImgBtn.addEventListener('click', editImg);

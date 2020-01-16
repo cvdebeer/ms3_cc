@@ -1,126 +1,127 @@
 {% extends 'base.html' %} {% block content %}
-<div class="new_recipe">
+<div id="new_recipe" class="visible">
     <h3>add recipe</h3>
     <div class="row">
-        <form action="" method="POST" enctype='multipart/form-data' class="col s12">
-            <div class="input-field col s12 m6">
-                <select id="category" name="category_name" class="icons ">
-                    <option value="" disabled selected>Choose your Category</option>
-                    {% for cat in categories %}
-                    <option value="" data-icon="{{cat.image}}" class="left">{{cat.category_name}}</option>
-                    {% endfor %}
-                </select>
-                <label></label>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6">
-                    <input placeholder="Recipe Title" id="recipe_name" name="recipe_name" type="text" class="validate">
-                    <label for="recipe_name"></label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6">
-                    <input placeholder="Author Name" id="author_name" name="author_name" type="text" class="validate">
-                    <label for="author_name"></label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <input placeholder="Weblink" id="weblink" name="weblink" type="text" class="validate">
-                    <label for="author_name"></label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6">
-                    <input placeholder="Number of Servings" id="servings" name="servings" type="text" class="validate">
-                    <label for="servings"></label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <input placeholder="Prep Time in minutes" id="prep_time" name="prep_time" type="text"
-                        class="validate">
-                    <label for="prep_time"></label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <input placeholder="Cook Time in minutes" id="cook_time" name="cook_time" type="text"
-                        class="validate">
-                    <label for="cook_time"></label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <select id="rating" name="rating" class="icons ">
-                        <option value="" disabled selected>Choose your Rating</option>
-                        {% for rate in ratings %}
-                        <option value="" data-icon="{{rate.r_image}}">{{rate.rated}}</option>
-                        {% endfor %}
-                    </select>
-                    <label></label>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <input placeholder="Net Carbs per serving" id="carbs" name="carbs" type="text" class="validate">
-                        <label for="carbs"></label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <input placeholder="Protein per serving" id="protein" name="protein" type="text"
-                            class="validate">
-                        <label for="protein"></label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <input placeholder="Fat per serving" id="fat" name="fat" type="text" class="validate">
-                        <label for="fat"></label>
-                    </div>
-                </div>
-                <a class="waves-effect waves-light btn"><i class="material-icons left">arrow_forward</i>add
-                    ingredients</a>
-            </div>
-            <!--Add ingredients section-->
-            <div class="add_ingredients">
-                <div class="row">
-                    <h3>add ingredients:</h3>
-                </div>
-                <ul id="adding-ingredients"></ul>
-                <div class="row">
-                    <div class="input-field col s2 ">
-                        <input placeholder="1" id="amount" name="amount" type="text" onfocus="this.value=''">
-                        <label for="amount">Amount</label>
-                    </div>
-                    <div class="input-field col s3">
-                        <select id='measurement' onfocus="this.value=''">
-                            <option value="" disabled selected></option>
-                            <option>cup/s</option>
-                            <option>g</option>
-                            <option>ml</option>
-                            <option>oz</option>
-                            <option>tbsp</option>
-                            <option>tsp</option>
-                            <option></option>
-                        </select>
-                        <label>Measurement</label>
-                    </div>
-                    <div class="input-field col s6 ">
-                        <input placeholder="Ingredient" id="ingredient" name="ingredient" type="text"
-                            onfocus="this.value=''">
-                        <label for="ingredient">Ingredient</label>
-                    </div>
-
-                    <div>
-                        <a id="add-ing" class="btn-floating btn-medium waves-effect waves-light red"><i
-                                class="material-icons">add</i></a>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div>
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">arrow_forward</i>Proceed
-                        to Preparation Method</a>
-                </div>
-            </div>
+    </div action="" method="POST" enctype='multipart/form-data' class="col s12">
+    <div class="input-field col s12 m6">
+        <select id="category" name="category_name" class="icons ">
+            <option value="" disabled selected>Choose your Category</option>
+            {% for cat in categories %}
+            <option value="" data-icon="{{cat.image}}" class="left">{{cat.category_name}}</option>
+            {% endfor %}
+        </select>
+        <label></label>
     </div>
-    <!--Add Method section-->
-    <div class="add_method">
+    <div class="row">
+        <div class="input-field col s12 m6">
+            <input placeholder="Recipe Title" id="recipe_name" name="recipe_name" type="text" class="validate">
+            <label for="recipe_name"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m6">
+            <input placeholder="Author Name" id="author_name" name="author_name" type="text" class="validate">
+            <label for="author_name"></label>
+        </div>
+        <div class="input-field col s12 m6">
+            <input placeholder="Weblink" id="weblink" name="weblink" type="text" class="validate">
+            <label for="author_name"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m6">
+            <input placeholder="Number of Servings" id="servings" name="servings" type="text" class="validate">
+            <label for="servings"></label>
+        </div>
+        <div class="input-field col s12 m6">
+            <input placeholder="Prep Time in minutes" id="prep_time" name="prep_time" type="text" class="validate">
+            <label for="prep_time"></label>
+        </div>
+        <div class="input-field col s12 m6">
+            <input placeholder="Cook Time in minutes" id="cook_time" name="cook_time" type="text" class="validate">
+            <label for="cook_time"></label>
+        </div>
+        <div class="input-field col s12 m6">
+            <select id="rating" name="rating" class="icons ">
+                <option disabled selected>Choose your Rating</option>
+                {% for rate in ratings %}
+                <option data-icon="{{rate.r_image}}">{{rate.rated}}</option>
+                {% endfor %}
+            </select>
+            <label></label>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input placeholder="Net Carbs per serving" id="carbs" name="carbs" type="text" class="validate">
+                <label for="carbs"></label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input placeholder="Protein per serving" id="protein" name="protein" type="text" class="validate">
+                <label for="protein"></label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input placeholder="Fat per serving" id="fat" name="fat" type="text" class="validate">
+                <label for="fat"></label>
+            </div>
+        </div>
+        <a id="add-ing-btn" class="waves-effect waves-light btn"><i class="material-icons left">arrow_forward</i>add
+            ingredients</a>
+    </div>
+</div>
+</div>
+<!--Add ingredients section-->
+<div id="add_ingredients" class=" hidden">
+    <div class="container">
+        <div class="row">
+            <h3>add ingredients:</h3>
+        </div>
+        <ul id="adding-ingredients"></ul>
+        <div class="row">
+            <div class="input-field col s2 ">
+                <input placeholder="1" id="amount" name="amount" type="text" onfocus="this.value=''">
+                <label for="amount">Amount</label>
+            </div>
+            <div class="input-field col s3">
+                <select id='measurement' onfocus="this.value=''">
+                    <option value="" disabled selected></option>
+                    <option>cup/s</option>
+                    <option>g</option>
+                    <option>ml</option>
+                    <option>oz</option>
+                    <option>tbsp</option>
+                    <option>tsp</option>
+                    <option></option>
+                </select>
+                <label>Measurement</label>
+            </div>
+            <div class="input-field col s6 ">
+                <input placeholder="Ingredient" id="ingredient" name="ingredient" type="text" onfocus="this.value=''">
+                <label for="ingredient">Ingredient</label>
+            </div>
+
+            <div>
+                <a id="add-ing" class="btn-floating btn-medium waves-effect waves-light red"><i
+                        class="material-icons">add</i></a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div>
+            <a id="add-met-btn" class="waves-effect waves-light btn"><i
+                    class="material-icons left">arrow_forward</i>Proceed
+                to Preparation Method</a>
+        </div>
+    </div>
+</div>
+<!--Add Method section-->
+<div id="add_method" class="hidden">
+    <div class="container">
         <div class="row">
             <h3>add method:</h3>
         </div>
-        <ol id="add-method"></ol>
+        <ol id="adding-method"></ol>
         <div class="row">
             <div class="input-field col s10 ">
                 <input placeholder="Method" id="method" name="method" type="text" class="validate "
@@ -151,20 +152,21 @@
                 Recipe</a>
         </div>
     </div>
-    <!--Review Recipe section-->
-    <div class="review">
+</div>
+<!--Review Recipe section-->
+<div id="review" class="hidden">
+    <div class="container">
         <div class="row">
             <h3>review recipe:</h3>
         </div>
         <div class="container" id="recipe-info">
             <h4><strong><u id="display-r-n"></u></strong></h4>
-
             <div class="row">
                 <div class="col s5">
                     <span><strong>serves: </strong><span><u id="display-serv"></u></span></span>
                 </div>
                 <div class="col s5">
-                    <span id="display-rating"><strong>difficulty rating:</strong></span>
+                    <span><strong>difficulty: </strong><span><u id="display-rating"></u></span></span>
                 </div>
                 <div class="col s2">
                     <a id="edit-info" class="btn-floating btn-small red">
@@ -174,7 +176,8 @@
             </div>
             <div class="row">
                 <div class="col s4">
-                    <span><strong> prep time: </strong><span><u id="display-prep"></u><span> min</span></span></span>
+                    <span><strong> prep time: </strong><span><u id="display-prep"></u><span>
+                                min</span></span></span>
                 </div>
                 <div class="col s4"> <span><strong> cook time: </strong><span><u id="display-cook"></u><span></span>
                             min</span></span></span>
@@ -194,7 +197,6 @@
                     <span><strong> protein: </strong><span><u id="display-pro"></u><span> g</span></span></span>
                     <span><strong> per serving</strong></span>
                 </div>
-
             </div>
         </div>
         <br>
