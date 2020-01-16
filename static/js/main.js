@@ -19,6 +19,8 @@ let methods = [];
 let addMethod = document.querySelector('#adding-method');
 let picUpload = document.querySelector('#pic-upload');
 let pic = document.querySelector('#fileInput');
+let displayIng = document.getElementById('display-ing');
+let displayMet = document.getElementById('display-method');
 
 $(document).ready(function () {
     $('select').formSelect();
@@ -26,7 +28,26 @@ $(document).ready(function () {
 });
 
 function addRecipeInfo() {
-    
+    let name = document.getElementById('recipe_name').value;
+    let serve = document.getElementById('servings').value;
+    let prep = document.getElementById('prep_time').value;
+    let cook = document.getElementById('cook_time').value;
+    result = Number(prep) + Number(cook);
+    let rate = document.getElementById('rating').value;
+    let carb = document.getElementById('carbs').value;
+    let fats = document.getElementById('fat').value;
+    let pro = document.getElementById('protein').value;
+
+
+    document.getElementById('display-r-n').innerHTML = name;
+    document.getElementById('display-serv').innerHTML = serve;
+    document.getElementById('display-prep').innerHTML = prep;
+    document.getElementById('display-cook').innerHTML = cook;
+    document.getElementById('display-total').innerHTML = result;
+    document.getElementById('display-carb').innerHTML = carb;
+    document.getElementById('display-fat').innerHTML = fats;
+    document.getElementById('display-pro').innerHTML = pro;
+    document.getElementById('display-rating').innerHTML = rate;
 
 }
 
@@ -89,39 +110,20 @@ function imageUpload() {
 }
 
 function reviewRecipe() {
+    addRecipeInfo();
+    displayIng.innerHTML = '';
+    displayMet.innerHTML = '';
     reviewRec.setAttribute('class', 'visible');
     addMet.setAttribute('class', 'hidden');
 
-    let name = document.getElementById('recipe_name').value;
-    let serve = document.getElementById('servings').value;
-    let prep = document.getElementById('prep_time').value;
-    let cook = document.getElementById('cook_time').value;
-    result = Number(prep) + Number(cook);
-    let rate = document.getElementById('rating').value;
-    let carb = document.getElementById('carbs').value;
-    let fats = document.getElementById('fat').value;
-    let pro = document.getElementById('protein').value;
-
-
-
-    document.getElementById('display-r-n').innerHTML = name;
-    document.getElementById('display-serv').innerHTML = serve;
-    document.getElementById('display-prep').innerHTML = prep;
-    document.getElementById('display-cook').innerHTML = cook;
-    document.getElementById('display-total').innerHTML = result;
-    document.getElementById('display-carb').innerHTML = carb;
-    document.getElementById('display-fat').innerHTML = fats;
-    document.getElementById('display-pro').innerHTML = pro;
-    document.getElementById('display-rating').innerHTML = rate;
-
 
     for (let i = 0; i < ingredients.length; i++) {
-        document.getElementById('display-ing').insertAdjacentHTML("beforeend",
+        displayIng.insertAdjacentHTML("beforeend",
             `<li>${ingredients[i].join(' ')}</li>`)
     };
 
     for (let m = 0; m < methods.length; m++) {
-        document.getElementById('display-method').insertAdjacentHTML('beforeend',
+        displayMet.insertAdjacentHTML('beforeend',
             `<li>${methods[m]}</li>`)
     };
 
