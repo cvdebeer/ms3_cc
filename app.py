@@ -33,9 +33,9 @@ def insert_recipe():
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
-
+    original_id = ObjectId()
     recipes.insert({
-        'category_id': 'category_id',
+        'category_id': original_id,
         'recipe_name': request.form.get('recipe_name'),
         'servings': request.form.get('servings'),
         'carbs': request.form.get('carbs'),
@@ -48,18 +48,23 @@ def insert_recipe():
         'image': fileInput.filename
     })
 
-    # authors.insert({
-    #     'author_name': request.form.get('author_name'),
-    #     'weblink': request.form.get('weblink'),
-    #     'recipe_id': ObjectId('recipe_id')
-    # })
-    # categories.update({
-    #     'recipe_id': ObjectId('recipe_id')
+    if authors.find({'author_name'}) == request.form.get('author_name'):
+        author.update_one('recipe_id', {$push: {'recipe_id': original_id}})
+    else
+    authors.insert({
+        'author_name': request.form.get('author_name'),
+        'weblink': request.form.get('weblink'),
+        'recipe_id': original_id
+    })
+    # categories.find({'category_id': original_id}).update({
+    #     'recipe_id': original_id
     # })
     # rating.update({
-    #     'recipe_id': ObjectId('recipe_id')
+    #     'recipe_id': original_id
     # })
     return redirect(url_for('add_recipe'))
+
+
 
 
 if __name__ == "__main__":
