@@ -13,6 +13,7 @@ const editIngBtn = document.getElementById('edit-ingredients');
 const editImgBtn = document.getElementById('edit-image');
 const editMetBtn = document.getElementById('edit-methods');
 const refreshBtn = document.querySelector('#refresh');
+const submitBtn = document.querySelector('#submitBtn')
 
 let ingredients = [];
 let addLineIngredient = document.querySelector('#adding-ingredients');
@@ -65,6 +66,9 @@ function addIngLine() {
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
 
+    ingJson = JSON.stringify(ingredients);
+    console.log(ingJson)
+    console.log(ingredients)
 }
 
 function moveToMet() {
@@ -78,7 +82,8 @@ function addingMethod() {
 
     addMethod.insertAdjacentHTML('beforeend',
         `<li>${inputMethod}</li>`);
-
+    metJson = JSON.stringify(methods);
+    console.log(metJson);
 }
 
 function imageUpload() {
@@ -164,6 +169,8 @@ function refreshReview() {
     addIng.setAttribute('class', 'hidden');
 }
 
+
+
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
 picUpload.addEventListener('click', imageUpload);
@@ -175,3 +182,4 @@ editIngBtn.addEventListener('click', editIng);
 editMetBtn.addEventListener('click', editMet);
 editImgBtn.addEventListener('click', editImg);
 refreshBtn.addEventListener('click', refreshReview);
+// submitBtn.addEventListener('click', newRecSub);
