@@ -17,12 +17,9 @@ def get_categories():
                            categories=mongo.db.categories.find().sort('category_name'))
 
 
-@app.route('/recipes<category_id>')
-def recipes(category_id):
-    mongo.db.recipes.find(
-        {'category_id': ObjectId(category_id)}
-    )
-    return render_template('recipes.html')
+@app.route('/add_recipe')
+def add_recipe():
+    return render_template('addrecipe.html', categories=mongo.db.categories.find().sort('category_name'), ratings=mongo.db.rating.find())
 
 
 if __name__ == "__main__":
