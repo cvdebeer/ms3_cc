@@ -8,13 +8,20 @@ app.config['MONGO_DBNAME'] = 'ccRecipes'
 app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 
 mongo = PyMongo(app)
-categories = mongo.db.categories
 
 
 @app.route('/')
 @app.route('/get_categories')
 def get_categories():
     return render_template('home.html', categories=mongo.db.categories.find().sort('category_name'))
+
+
+@app.route('/get_recipes/<category_id>')
+def get_recipes(category_id):
+    category = mongo.db.categories.find({'_id': ObjectId(category_id)})
+    the_recipes = mongo.db.recipes.find(
+        {'category_name': ObjectId(category_id)})
+    return render_template('recipes.html', category=category, recipe=the_recipes)
 
 
 @app.route('/add_recipe')
