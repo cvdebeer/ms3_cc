@@ -28,7 +28,7 @@ def get_recipes(category_id):
 
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template('addrecipe.html', categories=mongo.db.categories.find().sort('category_name'), ratings=mongo.db.rating.find())
+    return render_template('addrecipe.html', categories=mongo.db.categories.find().sort('category_name'), ratings=mongo.db.rating.find().sort('rating'))
 
 
 @app.route('/insert_recipe', methods=['POST'])
@@ -37,6 +37,8 @@ def insert_recipe():
     authors = mongo.db.authors
     categories = mongo.db.categories
     rating = mongo.db.rating
+    ingredients = dict(request.form.getlist('ingredients'))
+
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
@@ -50,19 +52,19 @@ def insert_recipe():
         'fat': request.form.get('fat'),
         'prep_time': request.form.get('prep_time'),
         'cook_time': request.form.get('cook_time'),
-        'ingredients': request.form.getlist('display-ing'),
-        'method': request.form.getlist('display-method'),
+        'ingredients': ingredients,
+        # 'method': request.form.getlist('display-method'),
         'image': fileInput.filename
     })
 
-    if authors.find({'author_name'}) == request.form.get('author_name'):
-        author.update_one('recipe_id', {$push: {'recipe_id': original_id}})
-    else
-    authors.insert({
-        'author_name': request.form.get('author_name'),
-        'weblink': request.form.get('weblink'),
-        'recipe_id': original_id
-    })
+    # authors.find({'author_name'}) == request.form.get('author_name'):
+    #     author.update_one('recipe_id', {'$push': {'recipe_id': original_id}})
+    # else:
+    #     authors.insert({
+    #         'author_name': request.form.get('author_name'),
+    #         'weblink': request.form.get('weblink'),
+    #         'recipe_id': original_id
+    #     })
     # categories.find({'category_id': original_id}).update({
     #     'recipe_id': original_id
     # })
@@ -70,8 +72,6 @@ def insert_recipe():
     #     'recipe_id': original_id
     # })
     return redirect(url_for('add_recipe'))
-
-
 
 
 if __name__ == "__main__":
