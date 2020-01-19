@@ -1,7 +1,30 @@
-$(document).ready(function () {
-    $('select').formSelect();
+const newRecipe = document.querySelector('#new_recipe');
+const addIng = document.querySelector('#add_ingredients');
+const addMet = document.querySelector('#add_method');
+const reviewRec = document.querySelector('#review');
+const addIngredient = document.querySelector('#add-ing');
+const plusMethod = document.querySelector('#add-met');
+const review = document.querySelector('#review_recipe');
+const info = document.querySelector('#recipe-info');
+const ingBtn = document.getElementById('add-ing-btn');
+const metBtn = document.getElementById('add-met-btn');
+const editInfoBtn = document.getElementById('edit-info');
+const editIngBtn = document.getElementById('edit-ingredients');
+const editImgBtn = document.getElementById('edit-image');
+const editMetBtn = document.getElementById('edit-methods');
+const refreshBtn = document.querySelector('#refresh');
+const submitBtn = document.querySelector('#submitBtn')
 
-});
+let ingredients = [];
+let addLineIngredient = document.querySelector('#adding-ingredients');
+let methods = [];
+let addMethod = document.querySelector('#adding-method');
+let picUpload = document.querySelector('#pic-upload');
+let pic = document.querySelector('#fileInput');
+let displayIng = document.getElementById('display-ing');
+let displayMet = document.getElementById('display-method');
+
+
 
 function addRecipeInfo() {
     let name = document.getElementById('recipe_name').value;
@@ -36,9 +59,13 @@ function addIngLine() {
     let amount = document.getElementById('amount').value;
     let measurement = document.getElementById('measurement').value;
     let ingredient = document.getElementById('ingredient').value;
-    ingredients.push([amount, measurement, ingredient]);
+    ingredients.push([`amount: '${amount}', measurement: '${measurement}', ingredient: '${ingredient}'`]);
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
+    ingJson = JSON.stringify(ingredients)
+
+    console.log(ingredients)
+    console.log(ingJson)
 
 }
 
@@ -53,6 +80,9 @@ function addingMethod() {
 
     addMethod.insertAdjacentHTML('beforeend',
         `<li>${inputMethod}</li>`);
+
+    metJson = JSON.stringify(methods)
+    console.log(methods)
 
 }
 
