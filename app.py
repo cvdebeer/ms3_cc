@@ -52,22 +52,26 @@ def insert_recipe():
         'fat': request.form.get('fat'),
         'prep_time': request.form.get('prep_time'),
         'cook_time': request.form.get('cook_time'),
-        'ingredients': ingredients,
+        'image': fileInput.filename,
+        # 'ingredients': ingredients,
         # 'method': request.form.getlist('display-method'),
-        'image': fileInput.filename
+
     })
 
     # authors.find({'author_name'}) == request.form.get('author_name'):
-    #     author.update_one('recipe_id', {'$push': {'recipe_id': original_id}})
+
+    # Not getting error but also not pusing anything up
+    authors.update({'author_id': original_id}, {
+                   '$push': {'recipe_id': original_id}})
     # else:
     #     authors.insert({
     #         'author_name': request.form.get('author_name'),
     #         'weblink': request.form.get('weblink'),
     #         'recipe_id': original_id
     #     })
-    # categories.find({'category_id': original_id}).update({
-    #     'recipe_id': original_id
-    # })
+    categories.update({'recipe_id': original_id}, {
+                      '$push': {'recipe_id': original_id}})
+    #
     # rating.update({
     #     'recipe_id': original_id
     # })
