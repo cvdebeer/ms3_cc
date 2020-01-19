@@ -2,16 +2,15 @@
 
 
 <div class="row">
-{% for name in categories %}
-    <h3><strong>{{categories.category_name}}</strong></h3>
-{% endfor %}
+
+    <h3><strong>Category name</strong></h3>
 <div class="row">
- {% for recipe in recipes %}
+{% for recipe in recipes %}
     <div class="col s12 m6 l4">
       <div class="card">
         <div class="card-image">
           <img src="images/sample-1.jpg" width="300px" height="300px">
-          <span class="card-title">{{recipes.recipe_name}}</strong></span>
+          <span class="card-title">recipe name</strong></span>
           <a href="" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
         </div>
         <div class="card-content">
@@ -19,7 +18,7 @@
         </div>
       </div>
     </div>
-    {% endfor %}   
+   {% endfor%}
   </div>
        <!-- Modal Trigger -->
   <button data-target="modal1" class="btn modal-trigger">Modal</button>

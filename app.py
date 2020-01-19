@@ -20,8 +20,8 @@ def get_categories():
 def get_recipes(category_id):
     category = mongo.db.categories.find({'_id': ObjectId(category_id)})
     the_recipes = mongo.db.recipes.find(
-        {'category_name': ObjectId(category_id)})
-    return render_template('recipes.html', category=category, recipe=the_recipes)
+        {'category_id': ObjectId(category_id)})
+    return render_template('recipes.html', category=category, recipes=the_recipes)
 
 
 @app.route('/add_recipe')
