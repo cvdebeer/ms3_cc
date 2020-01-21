@@ -72,7 +72,7 @@ function addIngLine() {
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
 
-
+    getData()
 
 }
 
@@ -140,8 +140,6 @@ function reviewRecipe() {
             `<li>${methods[m]}</li>`)
     };
 
-    getData();
-
 }
 
 function editInfo() {
@@ -177,11 +175,12 @@ function refreshReview() {
     addMet.setAttribute('class', 'hidden');
     newRecipe.setAttribute('class', 'hidden');
     addIng.setAttribute('class', 'hidden');
-    getData()
+
 }
 
 function newRecSub() {
-    getData();
+    // getData();
+    // getMet();
 }
 
 addIngredient.addEventListener('click', addIngLine);
@@ -214,6 +213,36 @@ function getData() {
 
         body: JSON.stringify({
             ingredients
+        })
+
+    }).then(function (response) {
+
+        return response.text();
+
+    }).then(function (text) {
+        console.log('POST response: ');
+        // Should be 'OK' if everything was successful
+
+        console.log(text);
+
+    });
+
+}
+
+function getMet() {
+    fetch('/getMet', {
+        // Specify the method
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        // A JSON payload
+
+        body: JSON.stringify({
+            methods
         })
 
     }).then(function (response) {

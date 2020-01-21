@@ -12,6 +12,7 @@ app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 mongo = PyMongo(app)
 
 ingredients = []
+methods = []
 
 
 @app.route('/')
@@ -54,6 +55,27 @@ def getData():
         return jsonify(message)  # serialize and use JSON headers
 
 
+@app.route('/getMet', methods=['GET', 'POST'])
+def getMet():
+
+    # POST request
+
+    if request.method == 'POST':
+        data = request.get_json()
+        methods.append(data)
+        print(data)
+        print(methods)
+        return data
+
+    # GET request
+
+    else:
+
+        message = {'Error!'}
+
+        return jsonify(message)  # serialize and use JSON headers
+
+
 @app.route('/test')
 def test_page():
     # look inside `templates` and serve `index.html`
@@ -82,9 +104,9 @@ def insert_recipe():
         'cook_time': request.form.get('cook_time'),
         'image': fileInput.filename,
         'ingredients': ingredients
-        # 'method': request.form.getlist('display-method'),
-
+        # 'method': methods,
     })
+    # recipes.update({}, {'$set': {ingredients}}, multi=True)
 
     # authors.find({'author_name'}) == request.form.get('author_name'):
 
