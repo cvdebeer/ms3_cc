@@ -16,7 +16,7 @@ const refreshBtn = document.querySelector('#refresh');
 const submitBtn = document.querySelector('#submitBtn')
 
 let ingredients = [];
-let ingobj = [];
+let screening = [];
 let addLineIngredient = document.querySelector('#adding-ingredients');
 let methods = [];
 let addMethod = document.querySelector('#adding-method');
@@ -59,9 +59,15 @@ function addIngLine() {
     let amount = document.getElementById('amount').value;
     let measurement = document.getElementById('measurement').value;
     let ingredient = document.getElementById('ingredient').value;
-    ingredients.push([amount, measurement, ingredient]);
-    ingobj.push(`{'amount': '${amount}', 'measurement': ${measurement}, 'ingredient': ${ingredient}}`)
+    let dataToSend = {
+        'amount': amount,
+        'measurement': measurement,
+        'ingredient': ingredient
+    }
+    ingredients.push(dataToSend);
+    screening.push([amount, measurement, ingredient])
     console.log(ingredients)
+    console.log(screening);
 
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
@@ -124,9 +130,9 @@ function reviewRecipe() {
     addMet.setAttribute('class', 'hidden');
 
 
-    for (let i = 0; i < ingredients.length; i++) {
+    for (let i = 0; i < screening.length; i++) {
         displayIng.insertAdjacentHTML("beforeend",
-            `<li>${ingredients[i].join(' ')}</li>`)
+            `<li>${screening[i].join(' ')}</li>`)
     };
 
     for (let m = 0; m < methods.length; m++) {
@@ -207,7 +213,7 @@ function getData() {
         // A JSON payload
 
         body: JSON.stringify({
-            ingobj
+            ingredients
         })
 
     }).then(function (response) {

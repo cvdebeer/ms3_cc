@@ -40,11 +40,9 @@ def getData():
 
     if request.method == 'POST':
         data = request.get_json()
-
-        print('Incoming..')
-        print
         print(request.get_json())  # parse as JSON
         ingredients.append(data)
+        print(ingredients)
         return data
 
     # GET request
@@ -83,7 +81,7 @@ def insert_recipe():
         'prep_time': request.form.get('prep_time'),
         'cook_time': request.form.get('cook_time'),
         'image': fileInput.filename,
-        'ingredients': ingredients,
+        'ingredients': ingredients
         # 'method': request.form.getlist('display-method'),
 
     })
