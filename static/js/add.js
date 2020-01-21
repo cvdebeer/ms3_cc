@@ -16,6 +16,7 @@ const refreshBtn = document.querySelector('#refresh');
 const submitBtn = document.querySelector('#submitBtn')
 
 let ingredients = [];
+let ingobj = [];
 let addLineIngredient = document.querySelector('#adding-ingredients');
 let methods = [];
 let addMethod = document.querySelector('#adding-method');
@@ -59,12 +60,14 @@ function addIngLine() {
     let measurement = document.getElementById('measurement').value;
     let ingredient = document.getElementById('ingredient').value;
     ingredients.push([amount, measurement, ingredient]);
+    ingobj.push(`{'amount': '${amount}', 'measurement': ${measurement}, 'ingredient': ${ingredient}}`)
+    console.log(ingredients)
+
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
 
-    ingJson = JSON.stringify(ingredients);
-    console.log(ingJson)
-    console.log(ingredients)
+
+
 }
 
 function moveToMet() {
@@ -78,8 +81,8 @@ function addingMethod() {
 
     addMethod.insertAdjacentHTML('beforeend',
         `<li>${inputMethod}</li>`);
-    metJson = JSON.stringify(methods);
-    console.log(metJson);
+
+
 }
 
 function imageUpload() {
@@ -110,6 +113,9 @@ function imageUpload() {
 
 }
 
+
+
+
 function reviewRecipe() {
     addRecipeInfo();
     displayIng.innerHTML = '';
@@ -127,6 +133,8 @@ function reviewRecipe() {
         displayMet.insertAdjacentHTML('beforeend',
             `<li>${methods[m]}</li>`)
     };
+
+    getData();
 
 }
 
@@ -163,9 +171,12 @@ function refreshReview() {
     addMet.setAttribute('class', 'hidden');
     newRecipe.setAttribute('class', 'hidden');
     addIng.setAttribute('class', 'hidden');
+    getData()
 }
 
-
+function newRecSub() {
+    getData();
+}
 
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
@@ -178,4 +189,37 @@ editIngBtn.addEventListener('click', editIng);
 editMetBtn.addEventListener('click', editMet);
 editImgBtn.addEventListener('click', editImg);
 refreshBtn.addEventListener('click', refreshReview);
-// submitBtn.addEventListener('click', newRecSub);
+submitBtn.addEventListener('click', newRecSub);
+
+// Post data for ingredients:
+
+// POST
+function getData() {
+    fetch('/getData', {
+        // Specify the method
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        // A JSON payload
+
+        body: JSON.stringify({
+            ingobj
+        })
+
+    }).then(function (response) {
+
+        return response.text();
+
+    }).then(function (text) {
+        console.log('POST response: ');
+        // Should be 'OK' if everything was successful
+
+        console.log(text);
+
+    });
+
+}

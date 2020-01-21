@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, jsonify, render_template, redirect, request, url_for
 import json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -10,6 +10,8 @@ app.config['MONGO_DBNAME'] = 'ccRecipes'
 app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 
 mongo = PyMongo(app)
+
+ingredients = []
 
 
 @app.route('/')
@@ -31,13 +33,41 @@ def add_recipe():
     return render_template('addrecipe.html', categories=mongo.db.categories.find().sort('category_name'), ratings=mongo.db.rating.find().sort('rating'))
 
 
+@app.route('/getData', methods=['GET', 'POST'])
+def getData():
+
+    # POST request
+
+    if request.method == 'POST':
+        data = request.get_json()
+
+        print('Incoming..')
+        print
+        print(request.get_json())  # parse as JSON
+        ingredients.append(data)
+        return data
+
+    # GET request
+
+    else:
+
+        message = {'Error!'}
+
+        return jsonify(message)  # serialize and use JSON headers
+
+
+@app.route('/test')
+def test_page():
+    # look inside `templates` and serve `index.html`
+    return render_template(url_for('add_recipe'))
+
+
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
     authors = mongo.db.authors
     categories = mongo.db.categories
     rating = mongo.db.rating
-    ingredients = dict(request.form.getlist('ingredients'))
 
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
@@ -53,7 +83,7 @@ def insert_recipe():
         'prep_time': request.form.get('prep_time'),
         'cook_time': request.form.get('cook_time'),
         'image': fileInput.filename,
-        # 'ingredients': ingredients,
+        'ingredients': ingredients,
         # 'method': request.form.getlist('display-method'),
 
     })
