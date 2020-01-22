@@ -23,10 +23,9 @@ def get_categories():
 
 @app.route('/get_recipes/<category_id>')
 def get_recipes(category_id):
-    category = mongo.db.categories.find({'_id': ObjectId(category_id)})
-    the_recipes = mongo.db.recipes.find(
-        {'category_id': ObjectId(category_id)})
-    return render_template('recipes.html', category=category, recipes=the_recipes)
+    the_category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    all_recipes = mongo.db.recipes.find()
+    return render_template('recipes.html', category=the_category, recipes=all_recipes)
 
 
 @app.route('/add_recipe')
