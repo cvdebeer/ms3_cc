@@ -74,8 +74,8 @@ function addIngLine() {
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
 
-    getData();
-    return ingredients = [];
+    // getData();
+    // return ingredients = [];
 }
 
 function moveToMet() {
@@ -92,8 +92,8 @@ function addingMethod() {
         `<li>${inputMethod}</li>`);
 
     console.log(methods);
-    getMet();
-    return methods = [];
+    // getMet();
+    // return methods = [];
 }
 
 function imageUpload() {
@@ -123,8 +123,6 @@ function imageUpload() {
 };
 
 
-
-
 function reviewRecipe() {
     addRecipeInfo();
     displayIng.innerHTML = '';
@@ -143,6 +141,7 @@ function reviewRecipe() {
             `<li>${screenMet[m]}</li>`)
     };
 
+
 }
 
 function editInfo() {
@@ -156,7 +155,7 @@ function editIng() {
     newRecipe.setAttribute('class', 'hidden');
     addMet.setAttribute('class', 'hidden');
     addLineIngredient.innerHTML = '';
-    return ingredients = [];
+    return ingredients = [], screenIng = [];
 }
 
 function editMet() {
@@ -164,7 +163,8 @@ function editMet() {
     newRecipe.setAttribute('class', 'hidden');
     addIng.setAttribute('class', 'hidden');
     addMethod.innerHTML = '';
-    return methods = [];
+
+    return methods = [], screenMet = [];
 }
 
 function editImg() {
@@ -181,6 +181,10 @@ function refreshReview() {
 
 }
 
+function send() {
+    getMet();
+    getData();
+}
 
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
@@ -193,6 +197,7 @@ editIngBtn.addEventListener('click', editIng);
 editMetBtn.addEventListener('click', editMet);
 editImgBtn.addEventListener('click', editImg);
 refreshBtn.addEventListener('click', refreshReview);
+submitBtn.addEventListener('click', send)
 
 
 /*  Post data for ingredients: */
