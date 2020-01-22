@@ -1,138 +1,18 @@
 {% extends 'base.html' %} {% block content %}
-<div id="new_recipe" class="visible">
-    <h3>add recipe</h3>
-    <div class="row">
-    </div action="" method="POST" enctype='multipart/form-data' class="col s12">
-    <div class="input-field col s12 m6">
-        <select id="category" name="category_name" class="icons ">
-            <option value="" disabled selected>Choose your Category</option>
-            {% for cat in categories %}
-            <option value="" data-icon="{{cat.image}}" class="left">{{cat.category_name}}</option>
-            {% endfor %}
-        </select>
-        <label></label>
-    </div>
-    <div class="row">
-        <div class="input-field col s12 m6">
-            <input placeholder="Recipe Title" id="recipe_name" name="recipe_name" type="text" class="validate">
-            <label for="recipe_name"></label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12 m6">
-            <input placeholder="Author Name" id="author_name" name="author_name" type="text" class="validate">
-            <label for="author_name"></label>
-        </div>
-        <div class="input-field col s12 m6">
-            <input placeholder="Weblink" id="weblink" name="weblink" type="text" class="validate">
-            <label for="author_name"></label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12 m6">
-            <input placeholder="Number of Servings" id="servings" name="servings" type="text" class="validate">
-            <label for="servings"></label>
-        </div>
-        <div class="input-field col s12 m6">
-            <input placeholder="Prep Time in minutes" id="prep_time" name="prep_time" type="text" class="validate">
-            <label for="prep_time"></label>
-        </div>
-        <div class="input-field col s12 m6">
-            <input placeholder="Cook Time in minutes" id="cook_time" name="cook_time" type="text" class="validate">
-            <label for="cook_time"></label>
-        </div>
-        <div class="input-field col s12 m6">
-            <select id="rating" name="rating" class="icons ">
-                <option disabled selected>Choose your Rating</option>
-                {% for rate in ratings %}
-                <option data-icon="{{rate.r_image}}">{{rate.rated}}</option>
-                {% endfor %}
-            </select>
-            <label></label>
-        </div>
+
+<form action="{{url_for('insert_recipe')}}" method="POST" enctype='multipart/form-data' class='col s12'>
+    <div id="new_recipe" class="visible">
+        <h3>add recipe</h3>
         <div class="row">
+
             <div class="input-field col s12 m6">
-                <input placeholder="Net Carbs per serving" id="carbs" name="carbs" type="text" class="validate">
-                <label for="carbs"></label>
-            </div>
-            <div class="input-field col s12 m6">
-                <input placeholder="Protein per serving" id="protein" name="protein" type="text" class="validate">
-                <label for="protein"></label>
-            </div>
-            <div class="input-field col s12 m6">
-                <input placeholder="Fat per serving" id="fat" name="fat" type="text" class="validate">
-                <label for="fat"></label>
-            </div>
-        </div>
-        <a id="add-ing-btn" class="waves-effect waves-light btn"><i class="material-icons left">arrow_forward</i>add
-            ingredients</a>
-    </div>
-</div>
-</div>
-<!--Add ingredients section-->
-<div id="add_ingredients" class=" hidden">
-    <div class="container">
-        <div class="row">
-            <h3>add ingredients:</h3>
-        </div>
-        <ul id="adding-ingredients"></ul>
-        <div class="row">
-            <div class="input-field col s2 ">
-                <input placeholder="1" id="amount" name="amount" type="text" onfocus="this.value=''">
-                <label for="amount">Amount</label>
-            </div>
-            <div class="input-field col s3">
-                <select id='measurement' onfocus="this.value=''">
-                    <option value="" disabled selected></option>
-                    <option>cup/s</option>
-                    <option>g</option>
-                    <option>ml</option>
-                    <option>oz</option>
-                    <option>tbsp</option>
-                    <option>tsp</option>
-                    <option></option>
+                <select id="category" name="category_name" class="icons ">
+                    <option value="" disabled selected>Choose your Category</option>
+                    {% for cat in categories %}
+                    <option value="" data-icon="{{cat.image}}" class="left">{{cat.category_name}}</option>
+                    {% endfor %}
                 </select>
-                <label>Measurement</label>
-            </div>
-            <div class="input-field col s6 ">
-                <input placeholder="Ingredient" id="ingredient" name="ingredient" type="text" onfocus="this.value=''">
-                <label for="ingredient">Ingredient</label>
-            </div>
-
-            <div>
-                <a id="add-ing" class="btn-floating btn-medium waves-effect waves-light red"><i
-                        class="material-icons">add</i></a>
-            </div>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div>
-            <a id="add-met-btn" class="waves-effect waves-light btn"><i
-                    class="material-icons left">arrow_forward</i>Proceed
-                to Preparation Method</a>
-        </div>
-    </div>
-</div>
-<!--Add Method section-->
-<div id="add_method" class="hidden">
-    <div class="container">
-        <div class="row">
-            <h3>add method:</h3>
-        </div>
-        <ol id="adding-method"></ol>
-        <div class="row">
-            <div class="input-field col s10 ">
-                <input placeholder="Method" id="method" name="method" type="text" class="validate "
-                    onfocus="this.value=''">
-                <label for="method">
-
-                </label>
-            </div>
-            <div>
-                <a id='add-met' class="btn-floating btn-medium waves-effect waves-light red"><i
-                        class="material-icons">add</i></a>
+                <label></label>
             </div>
         </div>
         <br>
@@ -166,88 +46,243 @@
         <div class="container" id="recipe-info">
             <h4><strong><u id="display-r-n"></u></strong></h4>
             <div class="row">
-                <div class="col s5">
-                    <span><strong>serves: </strong><span><u id="display-serv"></u></span></span>
-                </div>
-                <div class="col s5">
-                    <span><strong>difficulty: </strong><span><u id="display-rating"></u></span></span>
-                </div>
-                <div class="col s2">
-                    <a id="edit-info" class="btn-floating btn-small red">
-                        <i class="large material-icons">mode_edit</i>
-                    </a>
+                <div class="input-field col s12 m6">
+                    <input placeholder="Recipe Title" id="recipe_name" name="recipe_name" type="text" class="validate">
+                    <label for="recipe_name"></label>
                 </div>
             </div>
             <div class="row">
-                <div class="col s4">
-                    <span><strong> prep time: </strong><span><u id="display-prep"></u><span>
-                                min</span></span></span>
+                <div class="input-field col s12 m6">
+                    <input placeholder="Author Name" id="author_name" name="author_name" type="text" class="validate">
+                    <label for="author_name"></label>
                 </div>
-                <div class="col s4"> <span><strong> cook time: </strong><span><u id="display-cook"></u><span></span>
-                            min</span></span></span>
-                </div>
-                <div class="col s4"> <span><strong> total time: </strong><span><u id="display-total"></u><span>
-                                min</span></span></span>
+                <div class="input-field col s12 m6">
+                    <input placeholder="Weblink" id="weblink" name="weblink" type="text" class="validate">
+                    <label for="author_name"></label>
                 </div>
             </div>
             <div class="row">
-                <div class="col s4">
-                    <span><strong>net carbs: </strong><span><u id="display-carb"></u><span> g</span></span></span>
+                <div class="input-field col s12 m6">
+                    <input placeholder="Number of Servings" id="servings" name="servings" type="text" class="validate">
+                    <label for="servings"></label>
                 </div>
-                <div class="col s2">
-                    <span><strong> fat: </strong><span><u id="display-fat"></u><span> g</span></span></span>
+                <div class="input-field col s12 m6">
+                    <input placeholder="Prep Time in minutes" id="prep_time" name="prep_time" type="text"
+                        class="validate">
+                    <label for="prep_time"></label>
                 </div>
-                <div class="col s6">
-                    <span><strong> protein: </strong><span><u id="display-pro"></u><span> g</span></span></span>
-                    <span><strong> per serving</strong></span>
+                <div class="input-field col s12 m6">
+                    <input placeholder="Cook Time in minutes" id="cook_time" name="cook_time" type="text"
+                        class="validate">
+                    <label for="cook_time"></label>
                 </div>
-            </div>
-        </div>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col s10 m3">
-                    <img src="" id="display-img" class="" height="150px" width="150px">
+                <div class="input-field col s12 m6">
+                    <select id="rating" name="rating" class="icons ">
+                        <option disabled selected>Choose your Rating</option>
+                        {% for rate in ratings %}
+                        <option data-icon="{{rate.r_image}}">{{rate.rated}}</option>
+                        {% endfor %}
+                    </select>
+                    <label></label>
                 </div>
-                <div class="col s2">
-                    <a id="edit-image" class="btn-floating btn-small red">
-                        <i class="large material-icons">mode_edit</i>
-                    </a>
-                </div>
-                <div class="col s10 m5">
-                    <div>
-                        <ul id="display-ing"></ul>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Net Carbs per serving" id="carbs" name="carbs" type="text" class="validate">
+                        <label for="carbs"></label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Protein per serving" id="protein" name="protein" type="text"
+                            class="validate">
+                        <label for="protein"></label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Fat per serving" id="fat" name="fat" type="text" class="validate">
+                        <label for="fat"></label>
                     </div>
                 </div>
-                <div class="col s2">
-                    <a id="edit-ingredients" class="btn-floating btn-small red">
-                        <i class="large material-icons">mode_edit</i>
-                    </a>
-                </div>
+                <a id="add-ing-btn" class="waves-effect waves-light btn"><i
+                        class="material-icons left">arrow_forward</i>add
+                    ingredients</a>
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col s10">
-                    <ol id="display-method"></ol>
-                </div>
-                <div class="col s2">
-                    <a id="edit-methods" class="btn-floating btn-small red">
-                        <i class="large material-icons">mode_edit</i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <br>
-        <div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit Recipe
-                <i class="material-icons right">send</i>
-            </button>
         </div>
     </div>
-</div>
+    <!--Add ingredients section-->
+    <div id="add_ingredients" class=" hidden">
+        <div class="container">
+            <div class="row">
+                <h3>add ingredients:</h3>
+            </div>
+            <ul id="adding-ingredients"></ul>
+            <div class="row">
+                <div class="input-field col s2 ">
+                    <input placeholder="1" id="amount" name="amount" type="text" onfocus="this.value=''">
+                    <label for="amount">Amount</label>
+                </div>
+                <div class="input-field col s3">
+                    <select id='measurement' name='measurement' onfocus="this.value=''">
+                        <option value="" disabled selected></option>
+                        <option>cup/s</option>
+                        <option>g</option>
+                        <option>ml</option>
+                        <option>oz</option>
+                        <option>tbsp</option>
+                        <option>tsp</option>
+                        <option></option>
+                    </select>
+                    <label>Measurement</label>
+                </div>
+                <div class="input-field col s6 ">
+                    <input placeholder="Ingredient" id="ingredient" name="ingredient" type="text"
+                        onfocus="this.value=''">
+                    <label for="ingredient">Ingredient</label>
+                </div>
+                <div>
+                    <a id="add-ing" class="btn-floating btn-medium waves-effect waves-light red"><i
+                            class="material-icons">add</i></a>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div>
+                <a id="add-met-btn" class="waves-effect waves-light btn"><i
+                        class="material-icons left">arrow_forward</i>Proceed
+                    to Preparation Method</a>
+            </div>
+        </div>
+    </div>
+    <!--Add Method section-->
+    <div id="add_method" class="hidden">
+        <div class="container">
+            <div class="row">
+                <h3>add method:</h3>
+            </div>
+            <ol id="adding-method"></ol>
+            <div class="row">
+                <div class="input-field col s10 ">
+                    <input placeholder="Method" id="method" name="method" type="text" class="validate "
+                        onfocus="this.value=''">
+                    <label for="method">
+                    </label>
+                </div>
+                <div>
+                    <a id='add-met' class="btn-floating btn-medium waves-effect waves-light red"><i
+                            class="material-icons">add</i></a>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div style="height:0px;overflow:hidden">
+                <input type="file" id="fileInput" name="fileInput" />
+            </div>
+            <img src="" id="preview" width="150px" height="150px">
+            <br>
+            <a id='pic-upload' class="waves-effect waves-light btn-small"><i
+                    class="material-icons left">add_a_photo</i>Upload
+                an image</a>
+            <br>
+            <br>
+            <div id='review_recipe'>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">arrow_forward</i>Review
+                    Recipe</a>
+            </div>
+        </div>
+    </div>
+    <!--Review Recipe section-->
+    <div id="review" class="hidden">
+        <div class="container">
+            <div class="row">
+                <h3>review recipe:</h3>
+            </div>
+            <div>
+                <a id="refresh" class="btn-floating btn-large waves-effect waves-light red"><i
+                        class="material-icons">refresh</i></a>
+            </div>
+            <div class="container" id="recipe-info">
+                <h4><strong><u id="display-r-n"></u></strong></h4>
+                <div class="row">
+                    <div class="col s5">
+                        <span><strong>serves: </strong><span><u id="display-serv"></u></span></span>
+                    </div>
+                    <div class="col s5">
+                        <span><strong>difficulty: </strong><span><u id="display-rating"></u></span></span>
+                    </div>
+                    <div class="col s2">
+                        <a id="edit-info" class="btn-floating btn-small red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4">
+                        <span><strong> prep time: </strong><span><u id="display-prep"></u><span>
+                                    min</span></span></span>
+                    </div>
+                    <div class="col s4"> <span><strong> cook time: </strong><span><u id="display-cook"></u><span></span>
+                                min</span></span></span>
+                    </div>
+                    <div class="col s4"> <span><strong> total time: </strong><span><u id="display-total"></u><span>
+                                    min</span></span></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4">
+                        <span><strong>net carbs: </strong><span><u id="display-carb"></u><span> g</span></span></span>
+                    </div>
+                    <div class="col s2">
+                        <span><strong> fat: </strong><span><u id="display-fat"></u><span> g</span></span></span>
+                    </div>
+                    <div class="col s6">
+                        <span><strong> protein: </strong><span><u id="display-pro"></u><span> g</span></span></span>
+                        <span><strong> per serving</strong></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col s10 m3">
+                        <img src="" id="display-img" name="display-img" class="" height="150px" width="150px">
+                    </div>
+                    <div class="col s2">
+                        <a id="edit-image" class="btn-floating btn-small red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                    </div>
+                    <div class="col s10 m5">
+                        <div>
+                            <ul id="display-ing"></ul>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <a id="edit-ingredients" class="btn-floating btn-small red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s10">
+                        <ol id="display-method"></ol>
+                    </div>
+                    <div class="col s2">
+                        <a id="edit-methods" class="btn-floating btn-small red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+                <button id='submitBtn' class="btn waves-effect waves-light" type="submit" name="action">Submit Recipe
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </div>
 </form>
 </div>
  <script src="{{url_for('static', filename='js/add.js')}}" type='text/javascript'>

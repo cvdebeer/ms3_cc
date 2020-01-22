@@ -13,17 +13,19 @@ const editIngBtn = document.getElementById('edit-ingredients');
 const editImgBtn = document.getElementById('edit-image');
 const editMetBtn = document.getElementById('edit-methods');
 const refreshBtn = document.querySelector('#refresh');
-const submitBtn = document.querySelector('#submitBtn')
+const submitBtn = document.querySelector('#submitBtn');
 
+let dataToSend = {};
 let ingredients = [];
+let screenIng = [];
 let addLineIngredient = document.querySelector('#adding-ingredients');
+let screenMet = [];
 let methods = [];
 let addMethod = document.querySelector('#adding-method');
 let picUpload = document.querySelector('#pic-upload');
 let pic = document.querySelector('#fileInput');
 let displayIng = document.getElementById('display-ing');
 let displayMet = document.getElementById('display-method');
-
 
 
 function addRecipeInfo() {
@@ -59,14 +61,21 @@ function addIngLine() {
     let amount = document.getElementById('amount').value;
     let measurement = document.getElementById('measurement').value;
     let ingredient = document.getElementById('ingredient').value;
-    ingredients.push([`amount: '${amount}', measurement: '${measurement}', ingredient: '${ingredient}'`]);
+    dataToSend = {
+        'amount': amount,
+        'measurement': measurement,
+        'ingredient': ingredient
+    }
+    ingredients.push(dataToSend);
+    screenIng.push([amount, measurement, ingredient])
+    console.log(ingredients)
+    console.log(screenIng);
+
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
-    ingJson = JSON.stringify(ingredients)
 
-    console.log(ingredients)
-    console.log(ingJson)
-
+    getData();
+    return ingredients = [];
 }
 
 function moveToMet() {
@@ -77,13 +86,14 @@ function moveToMet() {
 function addingMethod() {
     let inputMethod = document.getElementById('method').value;
     methods.push(inputMethod);
+    screenMet.push(inputMethod);
 
     addMethod.insertAdjacentHTML('beforeend',
         `<li>${inputMethod}</li>`);
 
-    metJson = JSON.stringify(methods)
-    console.log(methods)
-
+    console.log(methods);
+    getMet();
+    return methods = [];
 }
 
 function imageUpload() {
@@ -107,12 +117,13 @@ function imageUpload() {
                 preview.setAttribute('src', e.target.result);
                 display_image.setAttribute('src', e.target.result)
             }
-
             reader.readAsDataURL(input.files[0]);
         }
     }
+};
 
-}
+
+
 
 function reviewRecipe() {
     addRecipeInfo();
@@ -122,14 +133,14 @@ function reviewRecipe() {
     addMet.setAttribute('class', 'hidden');
 
 
-    for (let i = 0; i < ingredients.length; i++) {
+    for (let i = 0; i < screenIng.length; i++) {
         displayIng.insertAdjacentHTML("beforeend",
-            `<li>${ingredients[i].join(' ')}</li>`)
+            `<li>${screenIng[i].join(' ')}</li>`)
     };
 
-    for (let m = 0; m < methods.length; m++) {
+    for (let m = 0; m < screenMet.length; m++) {
         displayMet.insertAdjacentHTML('beforeend',
-            `<li>${methods[m]}</li>`)
+            `<li>${screenMet[m]}</li>`)
     };
 
 }
@@ -167,7 +178,9 @@ function refreshReview() {
     addMet.setAttribute('class', 'hidden');
     newRecipe.setAttribute('class', 'hidden');
     addIng.setAttribute('class', 'hidden');
+
 }
+
 
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
@@ -180,3 +193,44 @@ editIngBtn.addEventListener('click', editIng);
 editMetBtn.addEventListener('click', editMet);
 editImgBtn.addEventListener('click', editImg);
 refreshBtn.addEventListener('click', refreshReview);
+
+
+/*  Post data for ingredients: */
+/*  Code for communication between JS and python taken from an article https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
+ and adapted for use in this app */
+
+function getData() {
+    console.log(ingredients)
+    fetch('/getData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            ingredients
+        })
+    }).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        console.log('POST response: ');
+        console.log(text);
+    })
+};
+
+function getMet() {
+    fetch('/getMet', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            methods
+        })
+    }).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        console.log('POST response: ');
+        console.log(text);
+    });
+
+}
