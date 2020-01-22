@@ -94,8 +94,10 @@ def insert_recipe():
         mongo.save_file(fileInput.filename, fileInput)
     original_id = ObjectId()
     recipes.insert({
-        'category_id': original_id,
         'recipe_name': request.form.get('recipe_name'),
+        'category_name': request.form.get('category_name'),
+        'author_name': request.form.get('author_name'),
+        'weblink': request.form.get('weblink'),
         'servings': request.form.get('servings'),
         'carbs': request.form.get('carbs'),
         'protein': request.form.get('protein'),
@@ -106,25 +108,11 @@ def insert_recipe():
         'ingredients': ingredients,
         'method': methods,
     })
-    # recipes.update({}, {'$set': {ingredients}}, multi=True)
-
-    # authors.find({'author_name'}) == request.form.get('author_name'):
-
-    # Not getting error but also not pusing anything up
-    authors.update({'author_id': original_id}, {
-                   '$push': {'recipe_id': original_id}})
-    # else:
-    #     authors.insert({
-    #         'author_name': request.form.get('author_name'),
-    #         'weblink': request.form.get('weblink'),
-    #         'recipe_id': original_id
-    #     })
-    categories.update({'recipe_id': original_id}, {
-                      '$push': {'recipe_id': original_id}})
-    #
-    # rating.update({
-    #     'recipe_id': original_id
-    # })
+    authors.insert({
+        'author_name': request.form.get('author_name'),
+        'weblink': request.form.get('weblink'),
+        'recipe_id': original_id
+    })
     return redirect(url_for('add_recipe'))
 
 
