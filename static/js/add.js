@@ -15,6 +15,7 @@ const editMetBtn = document.getElementById('edit-methods');
 const refreshBtn = document.querySelector('#refresh');
 const submitBtn = document.querySelector('#submitBtn')
 
+let dataToSend = {};
 let ingredients = [];
 let screening = [];
 let addLineIngredient = document.querySelector('#adding-ingredients');
@@ -59,7 +60,7 @@ function addIngLine() {
     let amount = document.getElementById('amount').value;
     let measurement = document.getElementById('measurement').value;
     let ingredient = document.getElementById('ingredient').value;
-    let dataToSend = {
+    dataToSend = {
         'amount': amount,
         'measurement': measurement,
         'ingredient': ingredient
@@ -72,7 +73,9 @@ function addIngLine() {
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
 
-    getData()
+    getData();
+    return ingredients = [];
+
 
 }
 
@@ -200,6 +203,7 @@ submitBtn.addEventListener('click', newRecSub);
 
 // POST
 function getData() {
+    console.log(ingredients)
     fetch('/getData', {
         // Specify the method
 

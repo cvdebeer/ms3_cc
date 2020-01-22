@@ -41,8 +41,18 @@ def getData():
 
     if request.method == 'POST':
         data = request.get_json()
-        print(request.get_json())  # parse as JSON
-        ingredients.append(data)
+        # print(request.get_json())  # parse as JSON
+        # ingredients.append(data)
+        # print(ingredients)
+        # for ingredient in data[0]['ingredients']:
+        #     ingredients.append(ingredient)
+        #     # ingredients.append(data)
+        # print(ingredients)
+        print(data)
+        print(data['ingredients'])
+        for ingredient in data['ingredients']:
+            print(ingredient)
+            ingredients.append(ingredient)
         print(ingredients)
         return data
 
@@ -70,7 +80,7 @@ def getMet():
     # GET request
 
     else:
-
+        print('hello')
         message = {'Error!'}
 
         return jsonify(message)  # serialize and use JSON headers
@@ -88,6 +98,8 @@ def insert_recipe():
     authors = mongo.db.authors
     categories = mongo.db.categories
     rating = mongo.db.rating
+    # test = getData
+    # print(test)
 
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
@@ -104,6 +116,7 @@ def insert_recipe():
         'cook_time': request.form.get('cook_time'),
         'image': fileInput.filename,
         'ingredients': ingredients
+        # 'ingredients': test,
         # 'method': methods,
     })
     # recipes.update({}, {'$set': {ingredients}}, multi=True)
