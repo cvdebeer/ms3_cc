@@ -31,6 +31,8 @@ def get_recipes(category_id):
 
 @app.route('/add_recipe')
 def add_recipe():
+    ingredients.clear()
+    methods.clear()
     categories = mongo.db.categories.find().sort('category_name')
     ratings = mongo.db.rating.find()
     return render_template('addrecipe.html', categories=categories, ratings=ratings)
