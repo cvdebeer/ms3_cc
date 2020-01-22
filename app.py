@@ -104,15 +104,12 @@ def insert_recipe():
         'fat': request.form.get('fat'),
         'prep_time': request.form.get('prep_time'),
         'cook_time': request.form.get('cook_time'),
+        'rating': request.form.get('rating'),
         'image': fileInput.filename,
         'ingredients': ingredients,
         'method': methods,
     })
-    authors.insert({
-        'author_name': request.form.get('author_name'),
-        'weblink': request.form.get('weblink'),
-        'recipe_id': original_id
-    })
+
     return redirect(url_for('add_recipe'))
 
 
