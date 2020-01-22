@@ -31,7 +31,9 @@ def get_recipes(category_id):
 
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template('addrecipe.html', categories=mongo.db.categories.find().sort('category_name'), ratings=mongo.db.rating.find().sort('rating'))
+    categories = mongo.db.categories.find().sort('category_name')
+    ratings = mongo.db.rating.find()
+    return render_template('addrecipe.html', categories=categories, ratings=ratings)
 
 
 '''  Code for communication between JS and python taken from an article https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
