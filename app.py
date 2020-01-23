@@ -18,14 +18,15 @@ methods = []
 @app.route('/')
 @app.route('/get_categories')
 def get_categories():
-    return render_template('home.html', categories=mongo.db.categories.find().sort('category_name'))
+    recipes = mongo.db.recipes.find()
+    categories = mongo.db.categories.find().sort('category_name')
+    return render_template('home.html', categories=categories, recipes=recipes)
 
 
-@app.route('/get_recipes/<category_id>')
-def get_recipes(category_id):
-    the_category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
-    all_recipes = mongo.db.recipes.find()
-    return render_template('recipes.html', category=the_category, recipes=all_recipes)
+@app.route('/get_recipes/<category_name>')
+def get_recipes(category_name):
+    all_recipes = mongo.db.recipes.find({'category_name': category_name})
+    return render_template('recipes.html', recipes=all_recipes)
 
 
 @app.route('/add_recipe')
@@ -89,29 +90,34 @@ def insert_recipe():
     authors = mongo.db.authors
     categories = mongo.db.categories
     rating = mongo.db.rating
-
+# Code for uploading and downloading images :https://www.youtube.com/watch?v=DsgAuceHha4
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
-    original_id = ObjectId()
-    recipes.insert({
-        'recipe_name': request.form.get('recipe_name'),
-        'category_name': request.form.get('category_name'),
-        'author_name': request.form.get('author_name'),
-        'weblink': request.form.get('weblink'),
-        'servings': request.form.get('servings'),
-        'carbs': request.form.get('carbs'),
-        'protein': request.form.get('protein'),
-        'fat': request.form.get('fat'),
-        'prep_time': request.form.get('prep_time'),
-        'cook_time': request.form.get('cook_time'),
-        'rating': request.form.get('rating'),
-        'image': fileInput.filename,
-        'ingredients': ingredients,
-        'method': methods,
-    })
+        original_id = ObjectId()
+        recipes.insert({
+            'recipe_name': request.form.get('recipe_name'),
+            'category_name': request.form.get('category_name'),
+            'author_name': request.form.get('author_name'),
+            'weblink': request.form.get('weblink'),
+            'servings': request.form.get('servings'),
+            'carbs': request.form.get('carbs'),
+            'protein': request.form.get('protein'),
+            'fat': request.form.get('fat'),
+            'prep_time': request.form.get('prep_time'),
+            'cook_time': request.form.get('cook_time'),
+            'rating': request.form.get('rating'),
+            'image': fileInput.filename,
+            'ingredients': ingredients,
+            'method': methods,
+        })
 
     return redirect(url_for('add_recipe'))
+
+# Code for uploading and downloading images :https://www.youtube.com/watch?v=DsgAuceHha4
+@app.route('/file/<filename>')
+def file(filename):
+    return mongo.send_file(filename)
 
 
 if __name__ == "__main__":
