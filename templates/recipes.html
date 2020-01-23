@@ -1,25 +1,99 @@
 {% extends 'base.html'%} {% block content %}
 
 <div class="row">
-<h3>{{recipes.category_name}}</h3>
-</div>
-  <div class="row">
-
   {% for recipe in recipes %}
-    <div class="col s12 m6">
-      <div class="card">
-        <div class="card-image">
-         <img src="{{url_for('file', filename=recipe['image'])}}" width="250px" height="250x" >
-          <span class="card-title"></span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+  <h3>{{recipe.category_name}}</h3>
+</div>
+<div class="row">
+  <div class="col s12 m6 l4">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{url_for('file', filename=recipe['image'])}}" width="250px" height="250x">
+        <span class="card-title"></span>
+        <a data-target="modal1" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i
+            class="material-icons">add</i></a>
+      </div>
+      <div class="card-content">
+        <p><strong>{{recipe.recipe_name}}</strong></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>{{recipe.category_name}}</h4>
+    <div class="row">
+      <div class="col s12 m4">
+        <img src="{{url_for('file', filename=recipe['image'])}}" width="150px" height="150x">
+      </div>
+      <div class="col s12 m8">
+        <div class="row">
+          <h5>{{recipe.recipe_name}}</h5>
         </div>
-        <div class="card-content">
-          <p>{{recipe.recipe_name}}- {{recipe.category_name}}</p>
+        <div class="row">
+          <div class="col s6">
+            <span>Number of servings: {{recipe.servings}} </span>
+          </div>
+          <div class="col s4">
+            <span>Rating: {{recipe.rating}} </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
+            <span>Prep Time: </span>
+            <span> {{recipe.prep_time}} min</span>
+          </div>
+          <div class="col s6"><span>Cook Time: </span>
+            <span> {{recipe.cook_time}} min</span> </div>
         </div>
       </div>
-      {% endfor %}
-      
+      <div class="row">
+        <div class="col s3">
+          <span>{{recipe.carbs}} net carbs, </span></div>
+        <div class="col s3">
+          <span> {{recipe.fat}} fat, </span></div>
+        <div class="col s6">
+          <span> {{recipe.protein}} protein per serving </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <h6><u>Ingredients</u></h6>
+      </div>
+      <ul>
+        {% for ingredients in recipe.ingredients %}
+        <li>{{ingredients.amount}} {{ingredients.measurement}} {{ingredients.ingredient}}</li>
+        {% endfor %}
+      </ul>
+      <br>
+      <br>
+      <div class="row">
+        <h6><u>Methods</u></h6>
+
+      </div>
+      <ol>
+        {% for method in recipe.methods}
+          <li>{{ method }} </li>
+        {% endfor %}
+        <!-- {% for i in range(0, len(recipe.methods)) %}
+        <li>{{ recipe.methods[i] }}</li>
+         -->
+
+      </ol>
     </div>
   </div>
 
+
+  <p>A bunch of text</p>
+</div>
+<div class="modal-footer">
+  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+</div>
+{% endfor %}
+</div>
 {% endblock %}
