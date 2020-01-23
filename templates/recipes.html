@@ -17,21 +17,19 @@
         <p><strong>{{recipe.recipe_name}}</strong></p>
       </div>
     </div>
-
   </div>
 </div>
+
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
   <div class="modal-content">
-    <h4>{{recipe.category_name}}</h4>
+    <h4>{{recipe.recipe_name}}</h4>
+    <br>
     <div class="row">
-      <div class="col s12 m4">
-        <img src="{{url_for('file', filename=recipe['image'])}}" width="150px" height="150x">
+      <div class="col s12 m3">
+        <img src="{{url_for('file', filename=recipe['image'])}}" width='150px' height='150px'>
       </div>
-      <div class="col s12 m8">
-        <div class="row">
-          <h5>{{recipe.recipe_name}}</h5>
-        </div>
+      <div class="col s12 m9">
         <div class="row">
           <div class="col s6">
             <span>Number of servings: {{recipe.servings}} </span>
@@ -50,13 +48,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s3">
+        <div class="col s2">
           <span>{{recipe.carbs}} net carbs, </span></div>
-        <div class="col s3">
+        <div class="col s2">
           <span> {{recipe.fat}} fat, </span></div>
-        <div class="col s6">
+        <div class="col s5">
           <span> {{recipe.protein}} protein per serving </span>
         </div>
+      </div>
+      <div class="row">
+        <span>Author: </span>
+        <span> {{recipe.author_name}}</span>
       </div>
     </div>
   </div>
@@ -74,26 +76,25 @@
       <br>
       <div class="row">
         <h6><u>Methods</u></h6>
-
       </div>
       <ol>
-        {% for method in recipe.methods}
-          <li>{{ method }} </li>
+        {% for method in recipe.method %}
+        <li>{{ method }} </li>
         {% endfor %}
-        <!-- {% for i in range(0, len(recipe.methods)) %}
-        <li>{{ recipe.methods[i] }}</li>
-         -->
-
       </ol>
+      <br>
+      <div class="row"><span>Weblink: </span>
+        <span> {{recipe.weblink}} </span>
+      </div>
     </div>
+
   </div>
 
+  {% endfor %}
 
-  <p>A bunch of text</p>
-</div>
-<div class="modal-footer">
-  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-</div>
-{% endfor %}
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+
 </div>
 {% endblock %}
