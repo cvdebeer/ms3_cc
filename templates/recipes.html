@@ -1,107 +1,23 @@
 {% extends 'base.html'%} {% block content %}
-
 <div class="row">
-  {% for recipe in recipes %}
-  <h3>{{recipe.category_name}}</h3>
-</div>
+    <h3> {{recipes.category_name}}</h3>
 <div class="row">
-  <div class="col s12 m6 l4">
-    <div class="card">
-      <div class="card-image">
-        <img src="{{url_for('file', filename=recipe['image'])}}" width="250px" height="250x">
-        <span class="card-title"></span>
-        <a data-target="modal1" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i
-            class="material-icons">add</i></a>
-      </div>
-      <div class="card-content">
-        <p><strong>{{recipe.recipe_name}}</strong></p>
+ {% for recipe in recipes %}
+    <div class="col s12 m6 l4">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{url_for('file', filename=recipe['image'])}}" width="250px" height="250px">
+          <span class="card-title"></strong></span>
+          <a href="{{url_for('recipe', recipe_id=recipe._id)}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p><strong>{{recipe.recipe_name}}</strong></p>
+        </div>
       </div>
     </div>
+    {% endfor %}   
   </div>
-</div>
+     
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>{{recipe.recipe_name}}</h4>
-    <br>
-    <div class="row">
-      <div class="col s12 m3">
-        <img src="{{url_for('file', filename=recipe['image'])}}" width='150px' height='150px'>
-      </div>
-      <div class="col s12 m9">
-        <div class="row">
-          <div class="col s6">
-            <span>Number of servings: {{recipe.servings}} </span>
-          </div>
-          <div class="col s4">
-            <span>Rating: {{recipe.rating}} </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s6">
-            <span>Prep Time: </span>
-            <span> {{recipe.prep_time}} min</span>
-          </div>
-          <div class="col s6"><span>Cook Time: </span>
-            <span> {{recipe.cook_time}} min</span> </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s2">
-          <span>{{recipe.carbs}} net carbs, </span></div>
-        <div class="col s2">
-          <span> {{recipe.fat}} fat, </span></div>
-        <div class="col s5">
-          <span> {{recipe.protein}} protein per serving </span>
-        </div>
-      </div>
-      <div class="row">
-        <span>Author: </span>
-        <span> {{recipe.author_name}}</span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="container">
-      <div class="row">
-        <h6><u>Ingredients</u></h6>
-      </div>
-      <ul>
-        {% for ingredients in recipe.ingredients %}
-        <li>{{ingredients.amount}} {{ingredients.measurement}} {{ingredients.ingredient}}</li>
-        {% endfor %}
-      </ul>
-      <br>
-      <br>
-      <div class="row">
-        <h6><u>Methods</u></h6>
-      </div>
-      <ol>
-        {% for method in recipe.method %}
-        <li>{{ method }} </li>
-        {% endfor %}
-      </ol>
-      <br>
-      <div class="row"><span>Weblink: </span>
-        <span> {{recipe.weblink}} </span>
-      </div>
-    </div>
-  </div>
-  
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">build</i>
-  </a>
-  <ul>    
-    <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-tooltip="Edit recipe" href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><i class="material-icons">mode_edit</i></a></li>
-    <li><a class="btn-floating green tooltipped" data-position="left" data-tooltip="Delete recipe"><i class="material-icons">delete_forever</i></a></li>
-    <li><a class="btn-floating blue tooltipped" data-position="left" data-tooltip="Add New Recipe" href="{{ url_for('add_recipe') }}"><i class="material-icons">post_add</i></a></li>
-  </ul>
-</div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-  </div>
-{% endfor %}
 </div>
 {% endblock %}

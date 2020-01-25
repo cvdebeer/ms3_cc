@@ -28,6 +28,11 @@ def get_recipes(category_name):
     all_recipes = mongo.db.recipes.find({'category_name': category_name})
     return render_template('recipes.html', recipes=all_recipes)
 
+@app.route('/recipe/<recipe_id>')
+def recipe(recipe_id):
+    recipes = mongo.db.recipes.find({'_id': ObjectId(recipe_id)})
+    return render_template('recipe.html', recipe=recipes)
+
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -161,7 +166,7 @@ def update_recipe(recipe_id):
 
 
 @app.route('/delete_recipe/<recipe_id>')
-def delete_recipe(recipe_id):
+def delete_recipe(recipe_id):    
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_categories'))
 

@@ -85,10 +85,8 @@ function moveToMet() {
 
 function addingMethod() {
     let inputMethod = document.getElementById('method').value;
-    dataToSend = {
-        'method': inputMethod
-    }
-    methods.push(dataToSend);
+
+    methods.push(inputMethod);
     screenMet.push(inputMethod);
 
     addMethod.insertAdjacentHTML('beforeend',
