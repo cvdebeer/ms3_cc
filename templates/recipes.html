@@ -87,14 +87,21 @@
         <span> {{recipe.weblink}} </span>
       </div>
     </div>
-
   </div>
-
-  {% endfor %}
-
+  
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">build</i>
+  </a>
+  <ul>    
+    <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-tooltip="Edit recipe" href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><i class="material-icons">mode_edit</i></a></li>
+    <li><a class="btn-floating green tooltipped" data-position="left" data-tooltip="Delete recipe"><i class="material-icons">delete_forever</i></a></li>
+    <li><a class="btn-floating blue tooltipped" data-position="left" data-tooltip="Add New Recipe" href="{{ url_for('add_recipe') }}"><i class="material-icons">post_add</i></a></li>
+  </ul>
+</div>
   <div class="modal-footer">
     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
   </div>
-
+{% endfor %}
 </div>
 {% endblock %}

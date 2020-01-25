@@ -120,6 +120,20 @@ def file(filename):
     return mongo.send_file(filename)
 
 
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    categories = mongo.db.categories.find()
+    ratings = mongo.db.rating.find()
+    return render_template('editrecipe.html', recipes=recipe, categories=categories, ratings=ratings)
+
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('get_categories'))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
