@@ -21,14 +21,18 @@ let addLineIngredient = document.querySelector('#editing-ingredients');
 let methods = [];
 let screenMet = [];
 let dataToSend = {};
-let ingredients = [];
+let ingredients = []
 let screenIng = [];
+
+getPyIng();
+getPyMet();
 
 function moveToEditIng() {
     editRecIng.setAttribute('class', 'visible');
     reviewRec.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
+    return ingredients = [];
 }
 
 function moveToEditMet() {
@@ -36,6 +40,8 @@ function moveToEditMet() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
+    return methods = [];
+
 }
 
 function moveToEditInfo() {
@@ -98,6 +104,8 @@ function imageUpload() {
 };
 
 function addIngLine() {
+
+    console.log(ingredients)
     displayIng.innerHTML = '';
     let amount = document.getElementById('amount').value;
     let measurement = document.getElementById('measurement').value;
@@ -121,6 +129,7 @@ function addIngLine() {
 }
 
 function addingMethod() {
+    console.log(methods)
     displayMet.innerHTML = '';
     let inputMethod = document.getElementById('method').value;
     methods.push(inputMethod);
@@ -138,7 +147,8 @@ function addingMethod() {
 
 function recRev() {
     updateRecipeInfo()
-
+    console.log(ingredients)
+    console.log(methods)
 
     reviewRec.setAttribute('class', 'visible')
     editInfo.setAttribute('class', 'hidden');
@@ -152,8 +162,8 @@ function recRev() {
 }
 
 function send() {
-    getMet();
-    getData();
+    // getMet();
+    // getData();
 }
 
 editIngBtn.addEventListener('click', moveToEditIng);
@@ -201,3 +211,35 @@ function getMet() {
     });
 
 };
+
+function getPyIng() {
+
+    fetch('/giveData')
+        .then(function (response) {
+            return response.json(); // But parse it as JSON this time           
+        })
+        .then(function (json) {
+
+            console.log('GET response as JSON:');
+            console.log(json); // Here’s our JSON object
+            ingredients = (json)
+            console.log(ingredients)
+
+        })
+}
+
+function getPyMet() {
+
+    fetch('/giveMet')
+        .then(function (response) {
+            return response.json(); // But parse it as JSON this time           
+        })
+        .then(function (json) {
+
+            console.log('GET response as JSON:');
+            console.log(json); // Here’s our JSON object
+            methods = (json)
+            console.log(methods)
+
+        })
+}
