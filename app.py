@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify, render_template, redirect, request, url_for
 import json
-from Flask_Pymongo import PyMongo
+from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 
@@ -64,6 +64,20 @@ def getData():
         message = {'Error!'}
         return jsonify(message)
 
+    if request.method == 'GET':
+        data = request.get_json()
+
+        print(data)
+        print(data['ingredients'])
+        for ingredient in data['ingredients']:
+            print(ingredient)
+            ingredients.append(ingredient)
+        print(ingredients)
+        return data
+
+    else:
+        message = {'Error!'}
+        return jsonify(message)
 
 
 
@@ -132,12 +146,17 @@ def edit_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     categories = mongo.db.categories.find()
     ratings = mongo.db.rating.find()
+    ingredients.append(recipe['ingredients'])
+    methods.append(recipe['method'])
+    print(ingredients)
+    print(methods)
     return render_template('editrecipe.html', recipes=recipe, categories=categories, ratings=ratings)
 
 
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
+    
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
