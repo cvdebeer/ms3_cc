@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify, render_template, redirect, request, url_for
 import json
-from flask_pymongo import PyMongo
+from Flask_Pymongo import PyMongo
 from bson.objectid import ObjectId
 
 
