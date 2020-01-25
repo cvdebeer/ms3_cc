@@ -60,6 +60,8 @@ def getData():
         return jsonify(message)
 
 
+
+
 @app.route('/getMet', methods=['GET', 'POST'])
 def getMet():
     if request.method == 'POST':
@@ -94,7 +96,6 @@ def insert_recipe():
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
-        original_id = ObjectId()
         recipes.insert({
             'recipe_name': request.form.get('recipe_name'),
             'category_name': request.form.get('category_name'),
@@ -106,10 +107,11 @@ def insert_recipe():
             'fat': request.form.get('fat'),
             'prep_time': request.form.get('prep_time'),
             'cook_time': request.form.get('cook_time'),
+            'total_time': request.form.get('total_time'),
             'rating': request.form.get('rating'),
             'image': fileInput.filename,
             'ingredients': ingredients,
-            'method': methods,
+            'method': methods
         })
 
     return redirect(url_for('add_recipe'))
@@ -126,6 +128,36 @@ def edit_recipe(recipe_id):
     categories = mongo.db.categories.find()
     ratings = mongo.db.rating.find()
     return render_template('editrecipe.html', recipes=recipe, categories=categories, ratings=ratings)
+
+
+@app.route('/update_recipe/<recipe_id>', methods=['POST'])
+def update_recipe(recipe_id):
+    recipes = mongo.db.recipes
+    if 'fileInput' in request.files:
+        fileInput = request.files['fileInput']
+        mongo.save_file(fileInput.filename, fileInput)
+    
+    recipes.update({'_id': ObjectId(recipe_id)},
+    {
+                    'recipe_name': request.form.get('recipe_name'),
+                    'category_name': request.form.get('category_name'),
+                    'author_name': request.form.get('author_name'),
+                    'weblink': request.form.get('weblink'),
+                    'servings': request.form.get('servings'),
+                    'carbs': request.form.get('carbs'),
+                    'protein': request.form.get('protein'),
+                    'fat': request.form.get('fat'),
+                    'prep_time': request.form.get('prep_time'),
+                    'cook_time': request.form.get('cook_time'),
+                    'total_time': request.form.get('total_time'),
+                    'rating': request.form.get('rating'),
+                    'image': fileInput.filename,     
+                    'ingredients': ingredients,
+                    'method': methods                                                
+                    
+                    })
+    
+    return redirect(url_for('get_categories'))
 
 
 @app.route('/delete_recipe/<recipe_id>')

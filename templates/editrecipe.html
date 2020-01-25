@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <!-- Edit form from review screen -->
-<form action="" method="POST" enctype='multipart/form-data' class='col s12'>
+<form id="edit-form" action="{{url_for('update_recipe', recipe_id=recipes._id)}}" method="POST" enctype='multipart/form-data' class='col s12'>
     <div class="row">
         <div id="edit_review" class="visible">
             <h3>edit recipe:</h3>
@@ -30,10 +30,10 @@
                 </div>
                 <div class="row">
                     <div class="col s4">
-                        <span><strong> prep time: </strong><span id="display-prep">{{recipes.prep_time}}</u><span>
+                        <span><strong> prep time: </strong><span id="display-prep">{{recipes.prep_time}}<span>
                                     min</span></span></span>
                     </div>
-                    <div class="col s4"> <span><strong> cook time: </strong><span id="display-cook">{{recipes.cook_time}}</u><span></span>
+                    <div class="col s4"> <span><strong> cook time: </strong><span id="display-cook">{{recipes.cook_time}}<span></span>
                                 min</span></span></span>
                     </div>
                     <div class="col s4"> <span><strong> total time: </strong><span id="display-total"><span>
