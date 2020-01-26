@@ -22,16 +22,22 @@ def get_categories():
     categories = mongo.db.categories.find().sort('category_name')
     return render_template('home.html', categories=categories, recipes=recipes)
 
+@app.route('/allrecipes')
+def allrecipes():
+    recipes=mongo.db.recipes.find().sort('recipe_name')
+    return render_template('allrecipes.html', recipes=recipes)
+
 
 @app.route('/get_recipes/<category_name>')
 def get_recipes(category_name):
-    all_recipes = mongo.db.recipes.find({'category_name': category_name})
+    all_recipes = mongo.db.recipes.find({'category_name': category_name}).sort('recipe_name')
     return render_template('recipes.html', recipes=all_recipes)
 
 @app.route('/recipe/<recipe_id>')
 def recipe(recipe_id):
     recipes = mongo.db.recipes.find({'_id': ObjectId(recipe_id)})
-    return render_template('recipe.html', recipe=recipes)
+    rating = mongo.db.rating.find()
+    return render_template('recipe.html', recipe=recipes, rating=rating)
 
 
 @app.route('/add_recipe')
