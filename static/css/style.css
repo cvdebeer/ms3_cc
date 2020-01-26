@@ -1,14 +1,58 @@
 html,
 body {
-    background-color: lightgrey;
-    font: 400;
+    /* background-color: lightgrey; */
+    font-weight: 400;
     color: #CD1704;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+
+
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: font-family: 'Playfair Display', serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+.btn {
+    background-color: #056B7E;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+/*_____________________________Colour assignments________________________*/
 .blue-tint {
     background-color: #056B7E;
 }
 
+.red {
+    background-color: #CD1704;
+}
+
+.orange {
+    background-color: #CD6604;
+}
+
+.green {
+    background-color: #039B25;
+}
+
+#pageview {
+    color: #056B7E;
+}
+
+/*-------------------------------show and hide of sections in add and edit recipes----------------*/
 .hidden {
     display: none;
 }
@@ -17,35 +61,51 @@ body {
     display: block;
 }
 
-img {
-    max-width: 100%;
-}
+
 
 /*-------------------------------------header---------------------------------------------*/
 nav {
-    background-color: lightgrey;
+    background-color: transparent;
 }
 
 #cc-logo {
     display: inline-block;
-    margin: auto;
     margin-top: 10px;
+    margin-left: 10px;
 }
 
 #tagline {
     font-size: medium;
 }
 
-@media (max-width: 883px) {
+@media (max-width: 1015px) {
     #tagline {
         visibility: hidden;
     }
 }
 
-.menu-view {
-    background-color: #056B7E;
+@media (max-width: 572px) {
+    #cc-title {
+        visibility: hidden;
+    }
 }
 
+#cc-title {
+    font-style: Extra-Bold Italic;
+    font-size: 40px;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+}
+
+.menu-view,
+.sidenav {
+    background-color: #056B7E;
+    color: whitesmoke;
+}
+
+.sidenav li>a {
+    color: whitesmoke;
+}
 
 #hamburger,
 #cc-title,
@@ -53,6 +113,6 @@ nav {
     color: #CD1704;
 }
 
-#mobile-demo {
-    color: whitesmoke;
-}
+
+
+/* ---------------------------------Body-------------------------*/
