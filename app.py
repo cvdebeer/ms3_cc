@@ -179,21 +179,23 @@ def update_recipe(recipe_id):
 
     recipes.update_one({'_id': ObjectId(recipe_id)},
     {
-                    'recipe_name': request.form.get('recipe_name'),
-                    'category_name': request.form.get('category_name'),
-                    'author_name': request.form.get('author_name'),
-                    'weblink': request.form.get('weblink'),
-                    'servings': request.form.get('servings'),
-                    'carbs': request.form.get('carbs'),
-                    'protein': request.form.get('protein'),
-                    'fat': request.form.get('fat'),
-                    'prep_time': request.form.get('prep_time'),
-                    'cook_time': request.form.get('cook_time'),
-                    'total_time': request.form.get('total_time'),
-                    'rating': request.form.get('rating'),
-                    'image': fileInput.filename},
-                    {'$set': {'ingredients': ingredients}},
-                    {'$set': {'method': methods}}, True)
+        'recipe_name': request.form.get('recipe_name'),
+        'category_name': request.form.get('category_name'),
+        'author_name': request.form.get('author_name'),
+        'weblink': request.form.get('weblink'),
+        'servings': request.form.get('servings'),
+        'carbs': request.form.get('carbs'),
+        'protein': request.form.get('protein'),
+        'fat': request.form.get('fat'),
+        'prep_time': request.form.get('prep_time'),
+        'cook_time': request.form.get('cook_time'),
+        'total_time': request.form.get('total_time')},
+        {'$set': {'ingredients': ingredients,
+                'method': methods}}
+    )
+        
+ 
+                    #  'image': fileInput.filename},
 
 
     return redirect(url_for('get_categories'))
