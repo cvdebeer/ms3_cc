@@ -1,7 +1,58 @@
+html,
+body {
+    background-color: lightgrey;
+    font: 400;
+    color: #CD1704;
+}
+
+.blue-tint {
+    background-color: #056B7E;
+}
+
 .hidden {
     display: none;
 }
 
 .visible {
     display: block;
+}
+
+img {
+    max-width: 100%;
+}
+
+/*-------------------------------------header---------------------------------------------*/
+nav {
+    background-color: lightgrey;
+}
+
+#cc-logo {
+    display: inline-block;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#tagline {
+    font-size: medium;
+}
+
+@media (max-width: 883px) {
+    #tagline {
+        visibility: hidden;
+    }
+}
+
+.menu-view {
+    background-color: #056B7E;
+}
+
+
+#hamburger,
+#cc-title,
+#tagline {
+    color: #CD1704;
+}
+
+#mobile-demo {
+    color: whitesmoke;
 }

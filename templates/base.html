@@ -2,25 +2,40 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <link rel="icon" type='image/png' href="https://res.cloudinary.com/dgsqmdssi/image/upload/v1580035162/ccRecipes/cc_logo_p2shq1.ico">
+    <link rel="icon" type='image/png' href="https://res.cloudinary.com/dgsqmdssi/image/upload/v1580036393/ccRecipes/cc_logo_dp7vxg.ico">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
 
 <body>
     <header>
-        <span>
-            <h1>carb-cutters</h1>
-        </span>
-        <span>
-            <h2>Recipes for a low carb lifestyle</h2>
-        </span>
+      <nav>
+    <div class="nav-wrapper">
+      <a href="{{url_for('get_categories') }}" class="brand-logo"><img id="cc-logo"src="https://res.cloudinary.com/dgsqmdssi/image/upload/v1580035162/ccRecipes/cc_logo_kbqpzs.png" height="40px" width='40px'><span><strong id="cc-title"> carb-cutters</strong></span><span id="tagline"> - recipes for a low carb lifestyle</span></a>
+      <a href="{{url_for('get_categories') }}" data-target="mobile-demo" class="sidenav-trigger"><i id="hamburger"class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down ">
+        <li><a href="{{url_for('get_categories') }}" class="menu-view">home</a></li>
+        <li><a href="{{ url_for('add_recipe') }}"class="menu-view" >add</a></li>       
+        
+      </ul>
+    </div>
+  </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="{{url_for('get_categories') }}" class="menu-view">home</a></li>
+    <li><a href="{{ url_for('add_recipe') }}" class="menu-view">add</a></li>    
+  </ul>      
     </header>
+    <main>
+     <div class="parallax-container">
+      <div class="parallax"><img src="https://res.cloudinary.com/dgsqmdssi/image/upload/v1580041554/ccRecipes/eat-2834549_1920_fht2zw.png"></div>
+    </div>
     <div class='container'>
         {% block content %}
         {% endblock %}
     </div>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
    <script src="{{url_for('static', filename='js/main.js')}}" type='text/javascript'></script>

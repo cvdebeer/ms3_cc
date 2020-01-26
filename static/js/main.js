@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('select').formSelect();
-    $('.modal').modal();
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
-
+    $('.sidenav').sidenav();
+    $('.parallax').parallax();
 });
