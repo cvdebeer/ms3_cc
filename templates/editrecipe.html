@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <!-- Edit form from review screen -->
-<form id="edit-form" action="{{url_for('update_recipe', recipe_id=recipes._id)}}" method="POST" enctype='multipart/form-data' class='col s12'>
+<!--Review Recipe section-->
+<form id="edit-form" action="{{url_for('update_recipe', recipe_id=recipes._id)}}" method="POST"
+    enctype='multipart/form-data' class='col s12'>
     <div class="row">
         <div id="edit_review" class="visible">
             <h3>edit recipe:</h3>
@@ -33,7 +35,8 @@
                         <span><strong> prep time: </strong><span id="display-prep">{{recipes.prep_time}}<span>
                                     min</span></span></span>
                     </div>
-                    <div class="col s4"> <span><strong> cook time: </strong><span id="display-cook">{{recipes.cook_time}}<span></span>
+                    <div class="col s4"> <span><strong> cook time: </strong><span
+                                id="display-cook">{{recipes.cook_time}}<span></span>
                                 min</span></span></span>
                     </div>
                     <div class="col s4"> <span><strong> total time: </strong><span id="display-total"><span>
@@ -42,13 +45,15 @@
                 </div>
                 <div class="row">
                     <div class="col s4">
-                        <span><strong>net carbs: </strong><span id="display-carb">{{recipes.carbs}}<span> g</span></span></span>
+                        <span><strong>net carbs: </strong><span id="display-carb">{{recipes.carbs}}<span>
+                                    g</span></span></span>
                     </div>
                     <div class="col s2">
                         <span><strong> fat: </strong><span id="display-fat">{{recipes.fat}}<span> g</span></span></span>
                     </div>
                     <div class="col s6">
-                        <span><strong> protein: </strong><span id="display-pro">{{recipes.protein}}<span> g</span></span></span>
+                        <span><strong> protein: </strong><span id="display-pro">{{recipes.protein}}<span>
+                                    g</span></span></span>
                         <span><strong> per serving</strong></span>
                     </div>
                 </div>
@@ -75,7 +80,7 @@
                                 {% for ingredient in recipes.ingredients %}
                                 <li>
                                     <span>{{ingredient.amount}} {{ingredient.measurement}}
-                                        {{ingredient.measurement}}</span>
+                                        {{ingredient.ingredient}}</span>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -115,6 +120,7 @@
             </div>
         </div>
         <!--Edit info section -->
+
         <div id="edit_recipe" class="hidden">
             <div class="container">
                 <h3>edit info</h3>
@@ -146,8 +152,7 @@
                             <label for="author_name">Author</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <input value="{{recipes.weblink}}" id="weblink" name="weblink" type="text"
-                                class="validate">
+                            <input value="{{recipes.weblink}}" id="weblink" name="weblink" type="text" class="validate">
                             <label for="weblink">Weblink</label>
                         </div>
                     </div>
@@ -183,8 +188,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input value="{{recipes.carbs}}" id="carbs" name="carbs" type="text"
-                                    class="validate">
+                                <input value="{{recipes.carbs}}" id="carbs" name="carbs" type="text" class="validate">
                                 <label for="carbs">Net Carbs</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -264,7 +268,7 @@
                     <h3>add method:</h3>
                 </div>
                 <div>
-                     <ol id="adding-method"></ol>
+                    <ol id="adding-method"></ol>
                 </div>
                 <div class="row">
                     <div class="input-field col s10 ">
@@ -277,15 +281,32 @@
                         <a id='add-met' class="btn-floating btn-medium waves-effect waves-light blue-tint"><i
                                 class="material-icons">add</i></a>
                     </div>
-                </div>               
+                </div>
                 <div class='review_recipe'>
                     <a class="waves-effect waves-light btn review"><i class="material-icons left">refresh</i>Review
                         Recipe</a>
                 </div>
             </div>
         </div>
-        <!--Review Recipe section-->
-
+        <!---upload new image -->
+        <div id="new-image" class='hidden'>
+            <div style="height:0px;overflow:hidden">
+                <input type="file" id="fileInput" name="fileInput" />
+            </div>
+            <img src="{{url_for('file', filename=recipes['image'])}}" id="display-img" width="150px" height="150px">
+            <br>
+            <a id='pic-upload' class="waves-effect waves-light btn-small"><i
+                    class="material-icons left">add_a_photo</i>Upload
+                an image</a>
+                <br>
+                <br>
+                <div class='review_recipe'>
+            <a class="waves-effect waves-light btn review"><i class="material-icons left">refresh</i>Review
+                Recipe</a>
+        </div>
+        </div>
+        
+    </div>
 </form>
 <script src="{{url_for('static', filename='js/edit.js')}}" type='text/javascript'>
 </script>
