@@ -9,6 +9,7 @@ const editRecMet = document.querySelector('#edit_method');
 const editInfoBtn = document.querySelector('#edit-info-btn');
 const editImgBtn = document.querySelector('#edit-img-btn');
 const plusMethod = document.querySelector('#add-met');
+const newImage = document.querySelector('#new-image')
 const submitBtn = document.querySelector('#submitBtn');
 
 
@@ -19,6 +20,8 @@ let displayMet = document.getElementById('display-method');
 let displayIng = document.getElementById('display-ing');
 let addLineIngredient = document.querySelector('#editing-ingredients');
 let methods = [];
+let pythonMet = []
+let pythonIng = []
 let screenMet = [];
 let dataToSend = {};
 let ingredients = []
@@ -32,6 +35,8 @@ function moveToEditIng() {
     reviewRec.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
+    newImage.setAttribute('class', 'hidden');
+
     return ingredients = [];
 }
 
@@ -40,6 +45,8 @@ function moveToEditMet() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
+    newImage.setAttribute('class', 'hidden');
+
     return methods = [];
 
 }
@@ -49,7 +56,19 @@ function moveToEditInfo() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
+    newImage.setAttribute('class', 'hidden');
+
 }
+
+function moveToEditImg() {
+    newImage.setAttribute('class', 'visible');
+    editInfo.setAttribute('class', 'hidden');
+    reviewRec.setAttribute('class', 'hidden');
+    editRecIng.setAttribute('class', 'hidden');
+    editRecMet.setAttribute('class', 'hidden');
+
+}
+
 
 function updateRecipeInfo() {
     let name = document.getElementById('recipe_name').value;
@@ -83,7 +102,8 @@ function imageUpload() {
     pic.click();
     /*Code for previewing images found https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display */
     let fileTag = document.getElementById("fileInput"),
-        preview = document.getElementById("edit_preview")
+        preview = document.getElementById("edit_preview"),
+        display_image = document.getElementById('display-img');
 
     fileTag.addEventListener("change", function () {
         changeImage(this);
@@ -97,6 +117,7 @@ function imageUpload() {
 
             reader.onload = function (e) {
                 preview.setAttribute('src', e.target.result);
+                display_image.setAttribute('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         }
@@ -154,30 +175,36 @@ function recRev() {
     editInfo.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-
-
-
-
-
 }
 
 function send() {
-    // getMet();
-    // getData();
+    if (JSON.stringify(methods) !== JSON.stringify(pythonMet)) {
+        getMet();
+    } else {
+        methods = pythonMet
+    }
+    if (JSON.stringify(ingredients) !== JSON.stringify(pythonIng)) {
+        getData();
+    } else {
+        ingredients = pythonIng;
+    }
+
 }
 
 editIngBtn.addEventListener('click', moveToEditIng);
 editMetBtn.addEventListener('click', moveToEditMet);
 reviewRecBtn.forEach(a => a.addEventListener('click', recRev));
 editInfoBtn.addEventListener('click', moveToEditInfo);
+editImgBtn.addEventListener('click', moveToEditImg);
 editImgBtn.addEventListener('click', imageUpload);
+
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
 submitBtn.addEventListener('click', send)
 
 
 function getData() {
-    console.log(ingredients)
+
     fetch('/getData', {
         method: 'POST',
         headers: {
@@ -195,6 +222,7 @@ function getData() {
 };
 
 function getMet() {
+
     fetch('/getMet', {
         method: 'POST',
         headers: {
@@ -222,7 +250,8 @@ function getPyIng() {
 
             console.log('GET response as JSON:');
             console.log(json); // Here’s our JSON object
-            ingredients = (json)
+            ingredients = (json[0])
+            pythonIng = (json)
             console.log(ingredients)
 
         })
@@ -239,6 +268,7 @@ function getPyMet() {
             console.log('GET response as JSON:');
             console.log(json); // Here’s our JSON object
             methods = (json)
+            pythonMet = (json)
             console.log(methods)
 
         })

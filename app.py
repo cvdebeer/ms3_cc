@@ -82,7 +82,7 @@ def giveData():
 
 @app.route('/getMet', methods=['GET', 'POST'])
 def getMet():
-    ingredients.clear()
+    methods.clear()
     if request.method == 'POST':
         data = request.get_json()
 
@@ -103,6 +103,7 @@ def getMet():
 @app.route('/giveMet', methods=['GET', 'POST'])
 def giveMet():
 
+    print(methods)
     if request.method == 'GET':
         message = methods
         return jsonify(message)
@@ -172,32 +173,30 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
-
+    print(ingredients)
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
-
-    recipes.update_one({'_id': ObjectId(recipe_id)},
-    {
-        'recipe_name': request.form.get('recipe_name'),
-        'category_name': request.form.get('category_name'),
-        'author_name': request.form.get('author_name'),
-        'weblink': request.form.get('weblink'),
-        'servings': request.form.get('servings'),
-        'carbs': request.form.get('carbs'),
-        'protein': request.form.get('protein'),
-        'fat': request.form.get('fat'),
-        'prep_time': request.form.get('prep_time'),
-        'cook_time': request.form.get('cook_time'),
-        'total_time': request.form.get('total_time')},
-        {'$set': {'ingredients': ingredients,
-                'method': methods}}
-    )
-        
- 
-                    #  'image': fileInput.filename},
-
-
+        recipes.update({'_id': ObjectId(recipe_id)},
+            {
+                '$set': {
+                'recipe_name': request.form.get('recipe_name'),
+                'category_name': request.form.get('category_name'),
+                'author_name': request.form.get('author_name'),
+                'weblink': request.form.get('weblink'),
+                'rating': request.form.get('rating'),
+                'servings': request.form.get('servings'),
+                'carbs': request.form.get('carbs'),
+                'protein': request.form.get('protein'),
+                'fat': request.form.get('fat'),
+                'prep_time': request.form.get('prep_time'),
+                'cook_time': request.form.get('cook_time'),
+                'total_time': request.form.get('total_time'),
+                'image': fileInput.filename,
+                'ingredients': ingredients,
+                'method': methods}
+            })
+            
     return redirect(url_for('get_categories'))
 
 
