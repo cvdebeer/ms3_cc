@@ -169,7 +169,9 @@ function addingMethod() {
 function recRev() {
     updateRecipeInfo()
     console.log(ingredients)
+    console.log(pythonIng)
     console.log(methods)
+    console.log(pythonMet)
 
     reviewRec.setAttribute('class', 'visible')
     editInfo.setAttribute('class', 'hidden');
@@ -180,18 +182,12 @@ function recRev() {
 }
 
 function send() {
-    if (JSON.stringify(methods) !== JSON.stringify(pythonMet)) {
-        getMet();
-    } else {
-        methods = pythonMet
-    }
-    if (JSON.stringify(ingredients) !== JSON.stringify(pythonIng)) {
-        getData();
-    } else {
-        ingredients = pythonIng;
-    }
+    getData();
+    getMet();
 
 }
+
+
 
 editIngBtn.addEventListener('click', moveToEditIng);
 editMetBtn.addEventListener('click', moveToEditMet);
@@ -253,8 +249,9 @@ function getPyIng() {
             console.log('GET response as JSON:');
             console.log(json); // Here’s our JSON object
             ingredients = (json[0])
-            pythonIng = (json)
+            pythonIng = (json[0])
             console.log(ingredients)
+            console.log(pythonIng)
 
         })
 }
@@ -269,9 +266,10 @@ function getPyMet() {
 
             console.log('GET response as JSON:');
             console.log(json); // Here’s our JSON object
-            methods = (json)
-            pythonMet = (json)
+            methods = (json[0])
+            pythonMet = (json[0])
             console.log(methods)
+            console.log(pythonMet)
 
         })
 }
