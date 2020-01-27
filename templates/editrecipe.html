@@ -289,13 +289,15 @@
             </div>
         </div>
         <!---upload new image -->
+        <br>
+        <br>
         <div id="new-image" class='hidden'>
             <div style="height:0px;overflow:hidden">
                 <input type="file" id="fileInput" name="fileInput" />
             </div>
             <img src="{{url_for('file', filename=recipes['image'])}}" id="display-img" width="150px" height="150px">
             <br>
-            <a id='pic-upload' class="waves-effect waves-light btn-small"><i
+            <a id='pic-upload' class="waves-effect waves-light  btn btn-small"><i
                     class="material-icons left">add_a_photo</i>Upload
                 an image</a>
                 <br>

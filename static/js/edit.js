@@ -175,6 +175,8 @@ function recRev() {
     editInfo.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
+    newImage.setAttribute('class', 'hidden');
+
 }
 
 function send() {
