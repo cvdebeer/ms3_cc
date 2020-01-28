@@ -1,6 +1,5 @@
 # ![logo](https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg) carb-cutters
 
-
 ## A recipe collection for those following a low carb lifestyle
 
 This is a collection of recipes that the User can reference when cooking or baking for ideas on low carb meals. The User is able to add recipes, edit recipes and delete recipes they do not want. The recipes are housed in seperate categories and sorted alphabetically for ease of reference. The user can also do a keyword search to find a recipe according to ingredient or rating
@@ -12,7 +11,7 @@ This is a collection of recipes that the User can reference when cooking or baki
 1. ### UX
 
    - [Project Goals](#project-goals)
-   - [Player Goals](#player-goals)
+   - [User Goals](#user-goals)
    - [Developer Goals](#developer-goals)
    - [User Stories](#user-stories)
    - [Design choices](#design-choices)
@@ -50,7 +49,7 @@ As a person, who is myself on a journey of low carb living, and having the frust
 
 The main goal of this app is to provide the User with a place to store any tried or untried recipes. These recipes are often found on different sites all over the web, but when you want to save them you inveriably save it to a folder that you have to search through over and over again. This app allows the user to store the information in one place, and then be able to reference them in a variety of ways.
 
-The User is able to search the site by category and recipe index, or alternatively search via a keyword. The difficulty rating is indicated and can be changed to the user's preference. What is easy to make for some, is not always easy for someone else! 
+The User is able to search the site by category and recipe index, or alternatively search via a keyword. The difficulty rating is indicated and can be changed to the user's preference. What is easy to make for some, is not always easy for someone else!  
 
 This application has been designed for users one all devices, allowing them to easily log recipes from anywhere, anytime.
 
@@ -92,7 +91,7 @@ Recipes are categorised and sorted alphabetically. Pictures help the user visual
 
 #### Colours
 
-I chose bright colours to compliment the vibrant colours of the pictures that are and would be loaded onto the site.
+My colour choices were inspired by the colours of fresh food. The red colour I used as my base colour was taken from a tomato.  
 
 My colour palette was chosen with the help of [paletton.com](http://paletton.com/#uid=7040u0kvopJlEw6rKuG-ul3IgfQ) - this link will take you to the colour wheel selected.
 
@@ -104,22 +103,24 @@ The fonts chosen for this build were Playfair & Display(for the Title and headin
 
 #### Styling
 
-I chose to keep the styling as simple as possible. As there are a lot of cards and collections which will dominate this application, I didn't want it fighting with other elements in the page. 
+I chose to keep the styling as simple as possible. As there are a lot of cards and collections which will dominate this application, I didn't want it fighting with other elements in the page.  
 
 All links and buttons ie. actions are the same colour except in the recipe page as their are multiple different options to chose from here. This is the place where you can chose to edit or delete the current recipe you are looking at or add another.
 
 #### Images
 
-I chose the images for the categories to be bright and welcoming to the User, with ingredients that are friendly to the low carb lifestyle. These are the only images that the user will not be able to change. All other images are provided by the user. All images are courtesy of [pixabay](https://pixabay.com/). 
+I chose the images for the categories to be bright and welcoming to the User, with ingredients that are friendly to the low carb lifestyle. These are the only images that the user will not be able to change. All other images are provided by the user. All images are courtesy of [pixabay](https://pixabay.com/).  
 
 #### Wireframes
+
 My wireframes were created using [Balsamiq](https://balsamiq.com/) during the Scope plane as part of my design and planning process.
 
 [Click here to go to my Mockup](https://res.cloudinary.com/dgsqmdssi/image/upload/v1580126512/ccRecipes/ccRecipes_spsbog.pdf)
 
-Although some elements of my original design did not come to fruition due mainly to lack of time, the core of what I wanted to achieve has been realised. 
+Although some elements of my original design did not come to fruition due mainly to lack of time, the core of what I wanted to achieve has been realised.  
 
 ## ![logo](https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg) Features
+
 ---
 
 ### Existing Features
@@ -135,6 +136,7 @@ Although some elements of my original design did not come to fruition due mainly
 ### Features still to implement
 
 Due to time constraints, and some issues I ran into during my build planned features not yet implemented are:
+
 - The search functionality allowing to search the database by ingredient, name etc
 - The ability for the User to share the recipe via social media or email.
 - A User dashboard where Users can see recipes by different criteria eg. Author or rating.
@@ -164,131 +166,104 @@ Due to time constraints, and some issues I ran into during my build planned feat
 
 ### Manual Testing
 
-<!-- This game has been specifically written for desktops at this time, as the number of cards on the medium and difficult levels translate poorly onto smaller devices. The minimum width of the game board on the hard level is 960px wide and 850px high, which is larger than most tablet sizes. -->
+Testing was done constantly during the development, with the use of the console, Chrome developer tools and the bash and mongo terminals.  
+
+- The console was used often for Javascript testing to see how the results were coming from the form and to see the way that the information was presented.It was used to test the results of functions and other actions during development.
+- Mongo terminal testing was used on numerous occasions to see what and how my information was coming out of the database, and I used this information, especially while trying to communicate betweem Python from Mongo to Javascript.  
+- The bash terminal was used a lot for Python testing, especially to see information that was coming from and going to Javascript. Printing to the terminal helped to record what was happening as opposed to console.log which clears once you move to another page.
+- Chrome developer tools was the biggest source of testing as it provided an almost live view of what was coming out of development. This helped me to ensure that the structure was coming together as was needed, and to drive down into the elements to see what effect choices were having.
+- The Werkzeug dependancy from Flask, was also very helpful for debugging issues that were crashing the application. Whether it was a syntax error a broken link or python programming. This tool was very helpful for quickly getting to the root of a problem.  
+
+This application was tested completely manually. I wish I had more knowledge and experience with automated testing, as it may have helped save time in the long run. I felt with time constraints and my knowledge base that it wasn't a prudent course of action. I definitely hope to learn and practice this more in the future.
 
 #### Testing on Desktop
 
-<!-- Manual testing on each part of the game was done while building it. When a feature was built I tested it to see that it was doing what was required. Most of the testing was done with Chrome developer tools and checked over other browsers. Below is a breakdown of what was tested in each section: -->
-
 ##### Browser Testing
-<!-- 
+
 I tested the following browsers already installed on my computer (all browsers tested were latest versions of these browsers):
 
 - Chrome- worked with full funtionality and all features working as expected.
-- Edge -  Game pages and boards worked as looked as expected. The index page buttons were not styled as expected but still functioned. It was also noted that the Konami code did not work on this browser.
-- Mozilla Firefox -  Game pages and boards worked as looked as expected. The index page buttons were not styled as expected but still functioned.
+- Edge -  worked with full funtionality and all features working as expected. Edge did pick up errors with missing tags or whitespace etc, which was not picked up by Chrome
+- Mozilla Firefox - Visually everything looked right, but when trying to submit information to Mongo, there was a network error and although it submitted all the form information,the arrays for ingredients and methods were not uploaded. This crashed the recipe when you wanted to edit or view it later. . When I inspected the  
 - Internet Explorer - none of the functionality or features were working.
-- Opera - Game pages and boards worked as looked as expected. The index page buttons were not styled as expected but still functioned.
-
-I tested the game on my Ipad in Safari - the index page looked and worked as expected, but the game board did not. When the cards "flipped" over the face cards were not visible. I eventually found the solution on Stackoverflow and made the background colour transparent. This made the face-card visible, so I assume that it is working on all Safari browsers too. -->
+- Opera - worked with full funtionality and all features working as expected.
+- Safari- I tested this on the Iphone and Ipad, but unfortunately both had the same issues as Firefox, not loading up ingredients and methods. As I don't know a Mac, I was unable to do debugging on these devices so they are not functional.  
 
 ##### User Facing
-<!-- 
-###### How to play
 
-- The "How to play" button was button was designed with a tooltip that appears when you hover over it.
-- The tooltip had been styled with CSS so I needed to check that the tooltip appeared beneath the button styled as expected.:arrow_right: This was done by hovering over the tooltip with the mouse.
+On all devices I did the following tests:
 
-###### "Reset" button
+1. Check that all the links work in larger and smaller screen formats.  
+   There are a few navigation links, and several buttons that allow the User to navigate around the site. All were checked that they do what they are supposed to and go where they are supposed to.
 
-- The reset button is designed to show a tooltip when hovered letting the User know what happens if they press the button.
-- The tooltip had been styled with CSS and was checked manually by hovering over it with a mouse to check that this behaved as expected.
-- On pressing the button several Javascript functions take over and do the following:
-  1. "Unflips" all the cards ie. only the back of the cards are visible :arrow_right: this was checked visually when clicking the reset button.
-  2. The "Moves" counter is reset to zero :arrow_right: this was tested by making a few matches and then pressing the reset button and making sure that the counter had reverted to zero.
-  3. The button stops the clock. :arrow_right: this was again tested by making a few moves and then pressing the reset button and checking that the clock stops counting upwards.
-  4. The button restarts the clock once a new game is started :arrow_right: this was tested by playing a few moves, pressing the reset button to stop the clock and then turning a card of a new game to confirm that the clock started again from zero.
-  5. Shuffles all the cards into a new random sequence :arrow_right: this was tested by playing a few cards, resetting and checking that the cards were at a different location. Also, full games were played and reset to check that cards were randomly arranged.
+        This worked across all devices.   
 
-###### Sound button
+2. Check that I can create a recipe and that all input requests were clearly conveyed to the user.  
+   The recipe is created over several sections. As a sections is completed you move onto the next one or back to the previous one. At the end of all the sections is a "review recipe" section. Here the User can choose to go back an edit a section that they might want to change. This is the last place changes can be made before the recipe is submitted to the database.
 
-- The sound button toggles between off and on using JavaScript, allowing the User to switch off the sound and switch it on again. :arrow_right: This was checked by starting a game and flipping a card to hear the sound, then pushing the button and:
-  1. Visually checking that the word had changed from "On" to "Off" and back again if pressed again.
-  2. Comparing the "On" to be with sound and then the "Off" to be with no sound.
+        I was able to create and recipe in all devices, although some browsers and  
+        devices didn't upload the ingredients and methods, this meant that the 
+        application is non-functional on these browsers/devices (Firefox and Safari). 
+        This seems to be because of the Fetch API I used to  communicate between
+        Javasxript and Python.  
+        Another issue picked up on smaller devices was that the selection of dropdowns 
+        was often tricky and took several tries. This could be very frustrating 
+        for the User.
+3. Check that I can view the recipe.  
+   It can be achieved by selecting a category and selecting the  recipe with the button, which then opens up to a new page where the recipe is displayed.  
+   Alternatively the "All Recipes" link takes you through to a collection of all recipes in  
+   alphabetical order. From here you can again open the recipe and perform actions on it.  
 
-###### "Moves" Counter
+        This worked well on all devices. 
+4. Check that I can edit recipe.  
+    The edit fuction is accessed from the recipe page, where the user is then presented with a recipe with sections for editing. All the buttons were checked to make sure that they take the User to the correct section of the form to update the information. Each step brings the User back to the "review" section, before the User then updates the recipe to the database.
 
-- This is an information point for the User that counts the number of moves it is taking the User to complete the game board.
-- The counter "counts" every pair of cards that are flipped by the User. ie two cards need to be flipped in order to count as one move.
-- This was a bit of JavaScript and was visually tested on the User side :arrow_right: by selecting one card and then another and making sure that it only went up by an increment of one for every pair turned over whether they were matching or not.
-- :arrow_right: Also clicked multiple cards in a row to make sure that it was only counting the flipped cards and not accidental clicks as well.
+       As with the add recipe section, this worked well on most browsers except Mozilla 
+       and Safari. Because these two browsers then updated the database with empty code, 
+       it caused the site to break as those recipes couldn't be opened again, and there 
+       was also no place to then access them or delete them.
+5. Check that I can delete a recipe. This is achieved from the recipe page of the site. Options are presented to the User on the bottom of the page to edit/delete or add a recipe. Should the user chose to delete the recipe it will be permanently removed from the database.  
 
-###### "Change level"
-
-- This is a simple dropdown menu that allows the User to navigate at any time before, during or after a game to a different level.
-- As the dropdown list was hidden from view a little JavaScript was used to make it visible again when hovering over the change level button.
-- Also the dropdown menu also had to be hidden again if the User did not make a selection and  moved the mouse off the button.
-- :arrow_right: Functionality was tested visually by hovering over the dropdown menu, moving the mouse away to check that the menu became hidden again,
-- :arrow_right: Links were tested to make sure that they were working and took the User to the selected game board when a selection was made.
-
-###### Timer
-
-- The timer is designed that it only starts the clock once the first card in a new game has been selected. :arrow_right: This was checked by waiting before turning the first card to make sure that the clock wasn't running and then checking that it started running as soon as the first card was turned.
-- The timer is designed to stop running if the game has been successfully completed. :arrow_right: This was checked by playing several games to completion and checking that the counter stopped every time it was successfully completed.
-- The timer is designed to stop running when the game is reset. :arrow_right: This was checked by reseting the game at various stages in the game and ensuring that the clock was stoped and no longer running.
-
-###### Konami Code
-
-This was added to the game as a bit of hidden fun for the User. :arrow_right: This was tested by entering the secret code: "halloween" at random junctures to see that it popped up and closeable again. Try it yourself :stuck_out_tongue_winking_eye:
-
-##### JavaScript
-
-I used the console a lot while writing the JavaScript to make sure:
-
-- that functions were being called
-- that the correct information was being pulled from the DOM.
-- for debugging when code wasn't working to start off with or had suddenly stopped working due to something else that I was added onto the code that was breaking it.
-
-I did attempt to start my project using Test Driven Development by writing tests with Jasmine, but my inexperience and minimal understanding of this tool led to frustration and I was unable to write a passing test. I was informed that Jasmine is not the best tool to test DOM manipulation, which, for the most part what my game does. -->
+        This worked well on all devices
 
 ### Automated Testing
 
 #### Validation Services
-<!-- 
+
 The following validation services were used to check the HTML and CSS code:
 
-- [W3C Validator](https://validator.w3.org/) was used for the HTML.
 - [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) was used to check the CSS
-
 The following were used for checking my Javascript code:
-
 - [JSHint](https://jshint.com/) - this did not like most of my code due to arrow functions and Array restructuring from some of my code.
-- [Babel](https://babeljs.io/)- this helped me convert my code into simpler versions that earlier browsers would understand as a some of my code was using ES2016 and 2017 functions (arrow functions and destructuring assignments) -->
-
-#### Jasmine
-<!-- 
-I did attempt to start my project using Test Driven Development by writing tests with Jasmine, but my inexperience and minimal understanding of this tool led to frustration and I was unable to write a passing test. I was informed that Jasmine is not the best tool to test DOM manipulation, which, for the most part what my game does. -->
 
 ### Bugs
 
 #### Current bugs
 
-<!-- - If the sound is switched off on the game and you change levels the sound comes back on.
-- If you drag the card while clicking the card the card will not flip over. Only allows flip on still click- this was a problem for my son who is not as controlled on a mouse as some.
-- Overclicking on cards does not stop the flip sound.
-- The timer does not go back to zero when the game is reset, however it does start counting again from zero, so does not impact game play. -->
+- The biggest visual bug is that if the User doesn't upload and image, then the default image is not loaded and there is no image when the User views the recipe. Also, if you edit the recipe and do not upload a picture it is then overwritten to a blank.
+- On some browsers the ingredients are not loaded to the database when creating a recipe and are also not uploaded when editing a recipe. This causes the system to break as the recipe cannot be accessed anymore for editing, deletion or viewing.
+- Although weblinks can be loaded and edited they cannot be followed to the actual webpage. Jinja is preventing them going to an external website.
   
 #### Resolved bugs
 
-<!-- - There was a bug on the hard level that caused the cards to stay flipped even when they weren't matched. This was resolved when I moved all my code into one JS file.
-- When navigating to the easy level, the start modal kept popping up. This was resolved by seperating the html and making the modal the index page.
-- When moving the mouse after hovering over the dropdown list, the list would not go away if nothing was selected. This was resolved with a click function allowing the User to close the dropdown list again.
-- There was a bug on playing the game on my Ipad. When the card flipped I only got a black card and didn't see that face-card. This was solved by making the background colour transparent. -->
+- The biggest challenge I faced was trying to get my languages to communicate in order to share information like my arrays for ingredients and methods, and then when they were talking to get the information out in a way that they languages could use them. This was finally solved with the fetch API, and a clever tutor who reminded me how to iterate over a dictionary but doesn't seem to be compatable with Firefox and Safari.
+- I was also having issues being able to sort my recipes by category, from the category selection. This was resolved in a roundabout way by a tutorial I was watching to load up images. We had only been taught to push to a url using an id, but the category didn't work the same way. This caused quite a few days of struggle.
 
 ## ![logo](https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg) Deployment
 
 ---
 
-This project was developed using Visual Studio Code. 
+This project was developed using Visual Studio Code.  
 Throughout the build completed sections were commited to git and then uploaded to my [Github repository](https://github.com/cvdebeer/ms3_cc)
 
-I also created an application on Heroku and the project was deployed  there [Heroku](https://ccrecipes-ms3.herokuapp.com/) where it is available to view by the public. 
+I also created an application on Heroku and the project was deployed  there [Heroku](https://ccrecipes-ms3.herokuapp.com/) where it is available to view by the public.  
+
 1. The deployment method used in Heroku is Github(all pushes to Github are then also built and deployed in Heroku). This makes sure that any changes to the project on Github are also reflected on Heroku.
-2. In the Heroku settings for the app I set the Configuration Variables for PORT, IP and Mongobd URI.
+1. In the Heroku settings for the app I set the Configuration Variables for PORT, IP and Mongobd URI.
 
 ### How to run this project locally
 
-#### To clone this project from GitHub:
+#### To clone this project from GitHub
 
 1. Follow the link to the [GitHub repository](https://github.com/cvdebeer/ms3_cc).
 2. Under the repository name, click "Clone or download".
@@ -296,74 +271,66 @@ I also created an application on Heroku and the project was deployed  there [Her
 4. In your local IDE open Git Bash.
 5. Change the current working directory to the location where you want the cloned directory to be made.
 6. Type 'git clone', and then paste the URL you copied in Step 3.
-    ~~~
-    git clone https://github.com/USERNAME/REPOSITORY
-    ~~~
+
+        -git clone https://github.com/USERNAME/REPOSITORY
+
 7. Press Enter. Your local clone should be created.
 
+#### To deploy to Heroku
 
-##### To deploy to Heroku:
 1. Start by creating an account on [Heroku](https://www.heroku.com/)
 2. Create a new app (either via the website or command line)
 3. login to Heroku in the command line (of your ide)
-    ~~~
-    heroku login
-    ~~~
+
+        heroku login
 4. Check your current apps, to check the app has been created
-    ~~~
-    heroku apps
-    ~~~
 
-##### You will also require 3 additional files: 
-    
-5. Creation of "requirements.txt" file, which displays the additional libraries and requirements to run the project.
+        heroku apps
 
+    *You will also require 3 additional files*
+
+5. Creation of "requirements.txt" file, which displays the additional libraries and requirements to run the project.  
 Use the command below to create the requirements.txt:
-~~~
-sudo pip3 freeze --local > requirements.txt 
-~~~
 
+        sudo pip3 freeze --local > requirements.txt 
 6. Creation of a "Procfile", which tells Heroku how to run our app
-~~~
-echo web: python app.py > Procfile
-~~~
+
+        echo web: python app.py > Procfile
 
 7. Creation of a "runtime.txt" file, which tells Heroku which version of Python you are running
-~~~
-echo python (version) > runtime.txt
-~~~
 
-##### Then add the environmental variables 
+        echo python (version) > runtime.txt
 
-8. Go to [Heroku](https://www.heroku.com/)
--  Go to Settings
--  Reveal config vars
--  Set IP: 0.0.0.0 Port: 5000
--  Set you Mongo_URI credentials here
+    *Then add the environmental variables*
 
-##### Finally, link to Github and deploy!
+8. Go to [Heroku](https://www.heroku.com/)  
+    - Go to Settings  
+    - Reveal config vars  
+    - Set IP: 0.0.0.0 Port: 5000
+    - Set you Mongo_URI credentials here
+
+    *Finally, link to Github and deploy!*
 Start by using the following commands to create your repository:
-    ~~~
-    git init
-    git add .
-    git commit -m "Initial commit"
-    ~~~
- 9. Then link to Heroku:
--  Go to Heroku
--  Then to deploy
--  Choose "Github" as the Deployment method
--  Login and connect to your Github repository (for the project)
--  Then "enable automatic deploys"
+
+    - git init
+    - git add .
+    - git commit -m "Initial commit"
+
+9. Then link to Heroku:  
+
+      - Go to Heroku
+      - Then to deploy
+      - Choose "Github" as the Deployment method
+      - Login and connect to your Github repository (for the project)
+      - Then "enable automatic deploys"
 
 10. If you now go into the command line in your IDE you can push the code to Heroku:
-~~~
-git push heroku master
-~~~
 
-11. Then set up the dynos: 
-~~~
-heroku ps:scale web=1
-~~~
+       - git push heroku master
+
+11. Then set up the dynos:
+
+        -heroku ps:scale web=1
 
 You can now view your project either via the "open app" button on Heroku, or by using the generated url in Heroku.
 
@@ -392,7 +359,7 @@ You can now view your project either via the "open app" button on Heroku, or by 
 
 ### Acknowledgements
 
-- Thanks to my family , who have spent long hours without my company while I studied and wrote this app. 
-- Thanks to my tutor Rahul, who handled my misery and frustration and who believed that I could create the picture in my head on the screen. 
+- Thanks to my family , who have spent long hours without my company while I studied and wrote this app.  
+- Thanks to my tutor Rahul, who handled my misery and frustration and who believed that I could create the picture in my head on the screen.  
 - Thanks to tutors that have always tried to point me in the right direction, with special thanks to Xavier, who put the final cog in the wheel to make the info from Javascript to Python work. I was at the point of giving up and at second 99 he saved the day!
-- Thanks to A Greaves, who provided a beautiful template for writing this Readme - you are a master!
+- Thanks to A Greaves, who provided a beautiful template for writing this Readme - you are a master!  
