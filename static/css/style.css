@@ -20,6 +20,7 @@ h6 {
 
 img {
     max-width: 100%;
+
 }
 
 .btn {
@@ -31,9 +32,19 @@ img {
     -o-border-radius: 15px;
 }
 
+.btn:hover {
+    background-color: #039B25;
+}
+
+
+
 /*_____________________________Colour assignments________________________*/
 .blue-tint {
     background-color: #056B7E;
+}
+
+.blue-tint:hover {
+    background-color: #039B25;
 }
 
 .red {
@@ -50,6 +61,10 @@ img {
 
 #pageview {
     color: #056B7E;
+}
+
+.back:hover {
+    background-color: #CD6604;
 }
 
 /*-------------------------------show and hide of sections in add and edit recipes----------------*/
@@ -115,4 +130,24 @@ nav {
 
 
 
-/* ---------------------------------Body-------------------------*/
+/* ---------------------------------Recipes view page (recipe.html)-------------------------*/
+
+.recipe-view {
+    border: solid 1px #CD6604;
+    padding-left: 10px;
+    padding-top: 5px;
+    margin-right: -5px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.ing-and-met {
+    margin-right: 5px;
+}
+
+.material-tooltip {
+    background-color: #056B7E;
+}
