@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <!-- Edit form from review screen -->
 <!--Review Recipe section-->
+<br>
+
 <form id="edit-form" action="{{url_for('update_recipe', recipe_id=recipes._id)}}" method="POST"
     enctype='multipart/form-data' class='col s12'>
     <div class="row">

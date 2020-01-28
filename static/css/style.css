@@ -18,6 +18,11 @@ h6 {
     font-family: 'Playfair Display', serif;
 }
 
+nav,
+.sidenav {
+    box-shadow: none;
+}
+
 img {
     max-width: 100%;
 
@@ -36,7 +41,7 @@ img {
     background-color: #039B25;
 }
 
-
+h1 {}
 
 /*_____________________________Colour assignments________________________*/
 .blue-tint {
@@ -90,7 +95,7 @@ nav {
 }
 
 #tagline {
-    font-size: medium;
+    font-size: 20px;
 }
 
 @media (max-width: 1015px) {
@@ -107,7 +112,7 @@ nav {
 
 #cc-title {
     font-style: Extra-Bold Italic;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 800;
     font-family: 'Playfair Display', serif;
 }
@@ -171,7 +176,8 @@ nav {
     margin-right: 0;
 }
 
-#edit_preview {
+#edit_preview,
+#img-view {
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;

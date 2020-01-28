@@ -1,4 +1,8 @@
 {% extends 'base.html'%} {% block content %}
+<div>
+<br>
+<br>
+<h3>all recipes:</h3>
   <ul class="collection">
   {% for recipe in recipes %}
     <li class="collection-item avatar">
@@ -11,4 +15,5 @@
     </li>
     {% endfor %}    
   </ul>
+</div>
 {% endblock %}

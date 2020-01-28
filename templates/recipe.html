@@ -6,7 +6,7 @@
 <br>
 <div class="row">
   <div class="col s12 m3">
-    <img src="{{url_for('file', filename=recipe['image'])}}" width='150px' height='150px'>
+    <img id="img-view" src="{{url_for('file', filename=recipe['image'])}}" width='150px' height='150px'>
   </div>
   <div id="info" class="col s12 m9">
     <div class="recipe-view">
@@ -45,7 +45,7 @@
   </div>
 </div>
 <div class="row">
-  <div  class="container recipe-view ing-and-met">
+  <div  class="recipe-view ing-and-met">
     <div class="row">
       <h6><u>Ingredients</u></h6>
     </div>
@@ -58,7 +58,7 @@
     <br>
   </div>
 </div>
-<div  id="recipe-methods" class="container recipe-view ing-and-met">
+<div  id="recipe-methods" class="recipe-view ing-and-met">
   <div  class="row">
     <h6><u>Methods</u></h6>
   </div>
