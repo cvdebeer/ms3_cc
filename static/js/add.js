@@ -224,9 +224,7 @@ function getData() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            ingredients
-        })
+        body: ingredients
     }).then(function (response) {
         return response.text();
     }).then(function (text) {
@@ -241,9 +239,8 @@ function getMet() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            methods
-        })
+        body: methods
+
     }).then(function (response) {
         return response.text();
     }).then(function (text) {
