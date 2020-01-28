@@ -123,7 +123,7 @@
                     Recipe Info</a>
             </div>
             <br>
-            <br>            
+            <br>
             <div>
                 <a id="add-met-btn" class="waves-effect waves-light btn"><i
                         class="material-icons left">arrow_forward</i>Proceed
@@ -149,13 +149,13 @@
                     <a id='add-met' class="btn-floating btn-medium waves-effect waves-light blue-tint"><i
                             class="material-icons">add</i></a>
                 </div>
-            </div>          
+            </div>
             <br>
             <br>
             <div id='back-ingredients'>
                 <a class="waves-effect waves-light btn back"><i class="material-icons left ">arrow_back</i>Back to
                     ingredients</a>
-            </div>                   
+            </div>
             <br>
             <div style="height:0px;overflow:hidden">
                 <input type="file" id="fileInput" name="fileInput" />
@@ -166,7 +166,7 @@
             <a id='pic-upload' class="waves-effect waves-light btn btn-small"><i
                     class="material-icons left">add_a_photo</i>Upload
                 an image</a>
-            <br>                 
+            <br>
             <br>
             <br>
             <div id='review_recipe'>
@@ -182,7 +182,8 @@
                 <h3>review recipe:</h3>
             </div>
             <div>
-                <a id="refresh" class="btn-floating btn-small waves-effect waves-light red  tooltipped pulse" data-position="right" data-tooltip="Refresh page after changes"><i
+                <a id="refresh" class="btn-floating btn-small waves-effect waves-light red  tooltipped pulse"
+                    data-position="right" data-tooltip="Refresh page after changes"><i
                         class="material-icons">refresh</i></a>
             </div>
             <br>
@@ -225,51 +226,53 @@
                         <span><strong> per serving</strong></span>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div >
-                <div class="row">
-                    <div class="col s10 m3">
-                        <img src="https://res.cloudinary.com/dgsqmdssi/image/upload/v1579434006/ccRecipes/JicJac-Oven_z15gmf.svg"
-                            id="display-img" name="display-img" class="" height="150px" width="150px">
-                    </div>
-                    <div class="col s1">
-                        <a id="edit-image" class="btn-floating btn-small blue-tint">
-                            <i class="large material-icons">mode_edit</i>
-                        </a>
-                    </div>
-                    <div id="dpl-i" class="col s10 m6 recipe-review">
-                        <h6><u>ingredients</u></h6>
-                        <div>
-                            <ul id="display-ing"></ul>
+
+                <br>
+                <div>
+                    <div class="row">
+                        <div class="col s10 m3">
+                            <img src="https://res.cloudinary.com/dgsqmdssi/image/upload/v1579434006/ccRecipes/JicJac-Oven_z15gmf.svg"
+                                id="display-img" name="display-img" class="" height="150px" width="150px">
+                        </div>
+                        <div class="col s1">
+                            <a id="edit-image" class="btn-floating btn-small blue-tint">
+                                <i class="large material-icons">mode_edit</i>
+                            </a>
+                        </div>
+                        <div id="dpl-i" class="col s10 m6 recipe-review">
+                            <h6><u>ingredients</u></h6>
+                            <div>
+                                <ul id="display-ing"></ul>
+                            </div>
+                        </div>
+                        <div class="col s1">
+                            <a id="edit-ingredients" class="btn-floating btn-small blue-tint">
+                                <i class="large material-icons">mode_edit</i>
+                            </a>
                         </div>
                     </div>
-                    <div class="col s1">
-                        <a id="edit-ingredients" class="btn-floating btn-small blue-tint">
-                            <i class="large material-icons">mode_edit</i>
-                        </a>
+                </div>
+                <div class="recipe-review">
+                    <div class="row">
+                        <div class="col s10">
+                            <h6><u>methods</u></h6>
+                            <ol id="display-method"></ol>
+                        </div>
+                        <div class="col s2">
+                            <a id="edit-methods" class="btn-floating btn-small blue-tint">
+                                <i class="large material-icons">mode_edit</i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="recipe-review">
-                <div class="row">                    
-                    <div class="col s10">
-                    <h6><u>methods</u></h6>
-                        <ol id="display-method"></ol>
-                    </div>
-                    <div class="col s2">
-                        <a id="edit-methods" class="btn-floating btn-small blue-tint">
-                            <i class="large material-icons">mode_edit</i>
-                        </a>
-                    </div>
+                <br>
+                <br>
+                <div>
+                    <button id='submitBtn' class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        Recipe
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
-            </div>
-            <br>
-            <br>
-            <div>
-                <button id='submitBtn' class="btn waves-effect waves-light" type="submit" name="action">Submit Recipe
-                    <i class="material-icons right">send</i>
-                </button>
             </div>
         </div>
     </div>

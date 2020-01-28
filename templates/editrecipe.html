@@ -67,7 +67,7 @@
                         <div style="height:0px;overflow:hidden">
                             <input type="file" id="fileInput" name="fileInput" />
                         </div>
-                        <img src="{{url_for('file', filename=recipes['image'])}}" alt="recipe image" id="edit_preview"
+                        <img src="{{url_for('file', filename=recipes['image'] or 'https://res.cloudinary.com/dgsqmdssi/image/upload/v1579434006/ccRecipes/JicJac-Oven_z15gmf.svg')}}" alt="recipe image" id="edit_preview"
                             width="150px" height="150px">
                     </div>
                     <div class="col s1">
