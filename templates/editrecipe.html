@@ -6,16 +6,16 @@
     <div class="row">
         <div id="edit_review" class="visible">
             <h3>edit recipe:</h3>
-            <div class="container" class="rec-review">
+            <div class="recipe-review" class="rec-review">
                 <h4><strong><u id="display-r-n">{{recipes.recipe_name}}</u></strong></h4>
                 <div class="row">
                     <div class="col s5">
                         <span><strong>author: </strong><span id="display-auth">{{recipes.author_name}}</span></span>
                     </div>
-                    <div class="col s5">
+                    <div class="col s6">
                         <span><strong>weblink: </strong><span id="display-weblink">{{recipes.weblink}}</span></span>
                     </div>
-                    <div class="col s2">
+                    <div class="col s1">
                         <a id="edit-info-btn" class="btn-floating btn-small blue-tint">
                             <i class="large material-icons">mode_edit</i>
                         </a>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <br>
-            <div class="container">
+            <div>
                 <div class="row">
                     <div class="col s10 m3">
                         <div style="height:0px;overflow:hidden">
@@ -68,12 +68,12 @@
                         <img src="{{url_for('file', filename=recipes['image'])}}" alt="recipe image" id="edit_preview"
                             width="150px" height="150px">
                     </div>
-                    <div class="col s2">
+                    <div class="col s1">
                         <a id="edit-img-btn" class="btn-floating btn-small blue-tint">
                             <i class="large material-icons">mode_edit</i>
                         </a>
-                    </div>
-                    <div class="col s10 m5">
+                    </div>                    
+                    <div  id="dpl-i" class="col s10 m6 recipe-review">
                         <h6><u>ingredients:</u></h6>
                         <div>
                             <ul id="display-ing">
@@ -86,28 +86,28 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col s2">
+                    <div class="col s1">
                         <a id="edit-ing-btn" class="btn-floating btn-small blue-tint">
                             <i class="large material-icons">mode_edit</i>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="recipe-review">
                 <h6><u>method:</u></h6>
                 <div class="row">
-                    <div class="col s10">
+                    <div class="col s11">
                         <ol id="display-method">
                             {% for method in recipes.method %}
-                            <li>{{ method }} </li>
+                            <li>{{ method.capitalize() }} </li>
                             {% endfor %}
                         </ol>
                     </div>
-                    <div class="col s2">
+                    <div class="col s1">
                         <a id="edit-met-btn" class="btn-floating btn-small blue-tint">
                             <i class="large material-icons">mode_edit</i>
                         </a>
-                    </div>
+                    </div>                    
                 </div>
             </div>
             <br>
