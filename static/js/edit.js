@@ -1,5 +1,5 @@
-const reviewRecBtn = document.querySelectorAll('.review')
-const reviewRec = document.querySelector('#edit_review')
+const reviewRecBtn = document.querySelectorAll('.review');
+const reviewRec = document.querySelector('#edit_review');
 const editInfo = document.querySelector('#edit_recipe');
 const editIngBtn = document.querySelector('#edit-ing-btn');
 const addIngredient = document.querySelector('#add-ing');
@@ -9,7 +9,7 @@ const editRecMet = document.querySelector('#edit_method');
 const editInfoBtn = document.querySelector('#edit-info-btn');
 const editImgBtn = document.querySelector('#edit-img-btn');
 const plusMethod = document.querySelector('#add-met');
-const newImage = document.querySelector('#new-image')
+const newImage = document.querySelector('#new-image');
 const submitBtn = document.querySelector('#submitBtn');
 
 
@@ -20,8 +20,6 @@ let displayMet = document.getElementById('display-method');
 let displayIng = document.getElementById('display-ing');
 let addLineIngredient = document.querySelector('#editing-ingredients');
 let methods = [];
-let pythonMet = []
-let pythonIng = []
 let screenMet = [];
 let dataToSend = {};
 let ingredients = []
@@ -35,7 +33,6 @@ function moveToEditIng() {
     reviewRec.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-    // newImage.setAttribute('class', 'hidden');
     displayIng.innerHTML = '';
     return ingredients = [];
 }
@@ -45,10 +42,8 @@ function moveToEditMet() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
-    // newImage.setAttribute('class', 'hidden');
     displayMet.innerHTML = '';
     return methods = [];
-
 }
 
 function moveToEditInfo() {
@@ -56,24 +51,20 @@ function moveToEditInfo() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-    // newImage.setAttribute('class', 'hidden');
-
 }
 
 function moveToEditImg() {
-    // newImage.setAttribute('class', 'visible');
     editInfo.setAttribute('class', 'hidden');
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-
 }
 
 
 function updateRecipeInfo() {
     let name = document.getElementById('recipe_name').value;
     let author = document.getElementById('author_name').value;
-    let weblink = document.getElementById('weblink').value
+    let weblink = document.getElementById('weblink').value;
     let serve = document.getElementById('servings').value;
     let prep = document.getElementById('prep_time').value;
     let cook = document.getElementById('cook_time').value;
@@ -125,9 +116,6 @@ function imageUpload() {
 };
 
 function addIngLine() {
-
-    console.log(ingredients)
-
     let amount = document.getElementById('amount').value;
     let measurement = document.getElementById('measurement').value;
     let ingredient = document.getElementById('ingredient').value;
@@ -137,11 +125,10 @@ function addIngLine() {
         'ingredient': ingredient
     }
     ingredients.push(dataToSend);
-    screenIng.push([amount, measurement, ingredient])
+    screenIng.push([amount, measurement, ingredient]);
 
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
-
 
     for (let i = 0; i < screenIng.length; i++) {
         displayIng.insertAdjacentHTML("beforeend",
@@ -150,7 +137,6 @@ function addIngLine() {
 }
 
 function addingMethod() {
-    console.log(methods)
     displayMet.innerHTML = '';
     let inputMethod = document.getElementById('method').value;
     methods.push(inputMethod);
@@ -168,41 +154,28 @@ function addingMethod() {
 
 function recRev() {
     updateRecipeInfo()
-    console.log(ingredients)
-    // console.log(pythonIng)
-    console.log(methods)
-    console.log(pythonMet)
-
     reviewRec.setAttribute('class', 'visible')
     editInfo.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-
-
 }
 
 function send() {
     getData();
     getMet();
-
 }
-
-
 
 editIngBtn.addEventListener('click', moveToEditIng);
 editMetBtn.addEventListener('click', moveToEditMet);
 reviewRecBtn.forEach(a => a.addEventListener('click', recRev));
 editInfoBtn.addEventListener('click', moveToEditInfo);
-// editImgBtn.addEventListener('click', moveToEditImg);
 editImgBtn.addEventListener('click', imageUpload);
-
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
 submitBtn.addEventListener('click', send)
 
 
 function getData() {
-
     fetch('/getData', {
         method: 'POST',
         headers: {
@@ -220,7 +193,6 @@ function getData() {
 };
 
 function getMet() {
-
     fetch('/getMet', {
         method: 'POST',
         headers: {
@@ -235,24 +207,18 @@ function getMet() {
         console.log('POST response: ');
         console.log(text);
     });
-
 };
 
 function getPyIng() {
-
     fetch('/giveData')
         .then(function (response) {
-            return response.json(); // But parse it as JSON this time           
+            return response.json();
         })
         .then(function (json) {
 
             console.log('GET response as JSON:');
-            console.log(json); // Here’s our JSON object
+            console.log(json);
             ingredients = (json[0])
-            // pythonIng = (json[0])
-            console.log(ingredients)
-            console.log(pythonIng)
-
         })
 }
 
@@ -260,16 +226,11 @@ function getPyMet() {
 
     fetch('/giveMet')
         .then(function (response) {
-            return response.json(); // But parse it as JSON this time           
+            return response.json();
         })
         .then(function (json) {
-
             console.log('GET response as JSON:');
             console.log(json); // Here’s our JSON object
             methods = (json[0])
-            pythonMet = (json[0])
-            console.log(methods)
-            console.log(pythonMet)
-
         })
 }

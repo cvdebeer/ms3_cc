@@ -15,7 +15,7 @@ const editMetBtn = document.getElementById('edit-methods');
 const refreshBtn = document.querySelector('#refresh');
 const submitBtn = document.querySelector('#submitBtn');
 const backtoInfoBtn = document.querySelector('#back-info');
-const backToIngBtn = document.querySelector('#back-ingredients')
+const backToIngBtn = document.querySelector('#back-ingredients');
 
 let dataToSend = {};
 let ingredients = [];
@@ -57,13 +57,13 @@ function addRecipeInfo() {
 function moveToInfo() {
     newRecipe.setAttribute('class', 'visible');
     addIng.setAttribute('class', 'hidden');
-    addMet.setAttribute('class', 'hidden')
+    addMet.setAttribute('class', 'hidden');
 }
 
 function moveToIng() {
     addIng.setAttribute('class', 'visible');
     newRecipe.setAttribute('class', 'hidden');
-    addMet.setAttribute('class', 'hidden')
+    addMet.setAttribute('class', 'hidden');
 }
 
 function addIngLine() {
@@ -76,15 +76,11 @@ function addIngLine() {
         'ingredient': ingredient
     }
     ingredients.push(dataToSend);
-    screenIng.push([amount, measurement, ingredient])
-    console.log(ingredients)
-    console.log(screenIng);
+    screenIng.push([amount, measurement, ingredient]);
 
     addLineIngredient.insertAdjacentHTML('beforeend',
         `<li>${amount} ${measurement} ${ingredient}</li>`);
 
-    // getData();
-    // return ingredients = [];
 }
 
 function moveToMet() {
@@ -102,9 +98,6 @@ function addingMethod() {
     addMethod.insertAdjacentHTML('beforeend',
         `<li>${inputMethod}</li>`);
 
-    console.log(methods);
-    // getMet();
-    // return methods = [];
 }
 
 function imageUpload() {
