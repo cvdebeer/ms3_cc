@@ -14,6 +14,8 @@ const editImgBtn = document.getElementById('edit-image');
 const editMetBtn = document.getElementById('edit-methods');
 const refreshBtn = document.querySelector('#refresh');
 const submitBtn = document.querySelector('#submitBtn');
+const backtoInfoBtn = document.querySelector('#back-info');
+const backToIngBtn = document.querySelector('#back-ingredients')
 
 let dataToSend = {};
 let ingredients = [];
@@ -52,9 +54,16 @@ function addRecipeInfo() {
 
 }
 
+function moveToInfo() {
+    newRecipe.setAttribute('class', 'visible');
+    addIng.setAttribute('class', 'hidden');
+    addMet.setAttribute('class', 'hidden')
+}
+
 function moveToIng() {
-    newRecipe.setAttribute('class', 'hidden');
     addIng.setAttribute('class', 'visible');
+    newRecipe.setAttribute('class', 'hidden');
+    addMet.setAttribute('class', 'hidden')
 }
 
 function addIngLine() {
@@ -81,6 +90,7 @@ function addIngLine() {
 function moveToMet() {
     addIng.setAttribute('class', 'hidden');
     addMet.setAttribute('class', 'visible');
+    newRecipe.setAttribute('class', 'hidden');
 }
 
 function addingMethod() {
@@ -199,6 +209,8 @@ editMetBtn.addEventListener('click', editMet);
 editImgBtn.addEventListener('click', editImg);
 refreshBtn.addEventListener('click', refreshReview);
 submitBtn.addEventListener('click', send)
+backtoInfoBtn.addEventListener('click', moveToInfo);
+backToIngBtn.addEventListener('click', moveToIng);
 
 
 /*  Post data for ingredients: */
