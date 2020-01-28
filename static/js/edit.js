@@ -169,7 +169,7 @@ function addingMethod() {
 function recRev() {
     updateRecipeInfo()
     console.log(ingredients)
-    console.log(pythonIng)
+    // console.log(pythonIng)
     console.log(methods)
     console.log(pythonMet)
 
@@ -177,7 +177,7 @@ function recRev() {
     editInfo.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-    newImage.setAttribute('class', 'hidden');
+
 
 }
 
@@ -249,7 +249,7 @@ function getPyIng() {
             console.log('GET response as JSON:');
             console.log(json); // Here’s our JSON object
             ingredients = (json[0])
-            pythonIng = (json[0])
+            // pythonIng = (json[0])
             console.log(ingredients)
             console.log(pythonIng)
 
