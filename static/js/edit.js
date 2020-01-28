@@ -35,8 +35,8 @@ function moveToEditIng() {
     reviewRec.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-    newImage.setAttribute('class', 'hidden');
-
+    // newImage.setAttribute('class', 'hidden');
+    displayIng.innerHTML = '';
     return ingredients = [];
 }
 
@@ -45,8 +45,8 @@ function moveToEditMet() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
-    newImage.setAttribute('class', 'hidden');
-
+    // newImage.setAttribute('class', 'hidden');
+    displayMet.innerHTML = '';
     return methods = [];
 
 }
@@ -56,12 +56,12 @@ function moveToEditInfo() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-    newImage.setAttribute('class', 'hidden');
+    // newImage.setAttribute('class', 'hidden');
 
 }
 
 function moveToEditImg() {
-    newImage.setAttribute('class', 'visible');
+    // newImage.setAttribute('class', 'visible');
     editInfo.setAttribute('class', 'hidden');
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
@@ -102,8 +102,8 @@ function imageUpload() {
     pic.click();
     /*Code for previewing images found https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display */
     let fileTag = document.getElementById("fileInput"),
-        preview = document.getElementById("edit_preview"),
-        display_image = document.getElementById('display-img');
+        preview = document.getElementById("edit_preview");
+    // display_image = document.getElementById('display-img');
 
     fileTag.addEventListener("change", function () {
         changeImage(this);
@@ -117,7 +117,7 @@ function imageUpload() {
 
             reader.onload = function (e) {
                 preview.setAttribute('src', e.target.result);
-                display_image.setAttribute('src', e.target.result);
+                // display_image.setAttribute('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         }
@@ -127,7 +127,7 @@ function imageUpload() {
 function addIngLine() {
 
     console.log(ingredients)
-    displayIng.innerHTML = '';
+
     let amount = document.getElementById('amount').value;
     let measurement = document.getElementById('measurement').value;
     let ingredient = document.getElementById('ingredient').value;
@@ -193,7 +193,7 @@ editIngBtn.addEventListener('click', moveToEditIng);
 editMetBtn.addEventListener('click', moveToEditMet);
 reviewRecBtn.forEach(a => a.addEventListener('click', recRev));
 editInfoBtn.addEventListener('click', moveToEditInfo);
-editImgBtn.addEventListener('click', moveToEditImg);
+// editImgBtn.addEventListener('click', moveToEditImg);
 editImgBtn.addEventListener('click', imageUpload);
 
 addIngredient.addEventListener('click', addIngLine);

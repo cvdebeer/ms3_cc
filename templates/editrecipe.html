@@ -65,8 +65,8 @@
                         <div style="height:0px;overflow:hidden">
                             <input type="file" id="fileInput" name="fileInput" />
                         </div>
-                        <img src="{{url_for('file', filename=recipes['image'])}}" id="edit_preview" width="150px"
-                            height="150px">
+                        <img src="{{url_for('file', filename=recipes['image'])}}" alt="recipe image" id="edit_preview"
+                            width="150px" height="150px">
                     </div>
                     <div class="col s2">
                         <a id="edit-img-btn" class="btn-floating btn-small blue-tint">
@@ -289,7 +289,7 @@
             </div>
         </div>
         <!---upload new image -->
-        <br>
+        <!-- <br>
         <br>
         <div id="new-image" class='hidden'>
             <div style="height:0px;overflow:hidden">
@@ -306,8 +306,8 @@
             <a class="waves-effect waves-light btn review"><i class="material-icons left">refresh</i>Review
                 Recipe</a>
         </div>
-        </div>
-        
+        </div> -->
+
     </div>
 </form>
 <script src="{{url_for('static', filename='js/edit.js')}}" type='text/javascript'>
