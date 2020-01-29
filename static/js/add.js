@@ -144,7 +144,8 @@ function reviewRecipe() {
         displayMet.insertAdjacentHTML('beforeend',
             `<li>${screenMet[m]}</li>`)
     };
-
+    console.log(ingredients);
+    console.log(methods);
 
 }
 
@@ -211,37 +212,43 @@ backToIngBtn.addEventListener('click', moveToIng);
  and adapted for use in this app */
 
 function getData() {
-    console.log(ingredients)
     fetch('/getData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ingredients
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ingredients
+            })
         })
-    }).then(function (response) {
-        return response.text();
-    }).then(function (text) {
-        console.log('POST response: ');
-        console.log(text);
-    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
 };
 
 function getMet() {
     fetch('/getMet', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            methods
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                methods
+            })
         })
-    }).then(function (response) {
-        return response.text();
-    }).then(function (text) {
-        console.log('POST response: ');
-        console.log(text);
-    });
-
-}
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+};

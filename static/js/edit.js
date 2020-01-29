@@ -158,6 +158,8 @@ function recRev() {
     editInfo.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
+    console.log(ingredients);
+    console.log(methods);
 }
 
 function send() {
@@ -177,36 +179,44 @@ submitBtn.addEventListener('click', send)
 
 function getData() {
     fetch('/getData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ingredients
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ingredients
+            })
         })
-    }).then(function (response) {
-        return response.text();
-    }).then(function (text) {
-        console.log('POST response: ');
-        console.log(text);
-    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
 };
 
 function getMet() {
     fetch('/getMet', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            methods
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                methods
+            })
         })
-    }).then(function (response) {
-        return response.text();
-    }).then(function (text) {
-        console.log('POST response: ');
-        console.log(text);
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
 };
 
 function getPyIng() {
@@ -219,6 +229,7 @@ function getPyIng() {
             console.log('GET response as JSON:');
             console.log(json);
             ingredients = (json[0])
+            console.log(ingredients)
         })
 }
 
@@ -232,5 +243,6 @@ function getPyMet() {
             console.log('GET response as JSON:');
             console.log(json); // Here’s our JSON object
             methods = (json[0])
+            console.log(methods)
         })
 }
