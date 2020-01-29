@@ -140,7 +140,7 @@ def insert_recipe():
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
-    else:
+    # else:
         # fileInput = send_image(cc_logo.png)
         # mongo.save_file(fileInput.filename, fileInput)
 
