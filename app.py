@@ -214,10 +214,10 @@ def delete_recipe(recipe_id):
 
 
 # referred to code from another student (spence barriball) at code institute and looked at code to help with search routing - https://github.com/5pence/recipeGlut        
-@app.route('/search')
+@app.route('/search', methods=['POST'])
 def search():
     """Provides logic for search bar"""
-    orig_query = request.args['query']
+    orig_query = request.form.get('query')
     # using regular expression setting option for any case
     query = {'$regex': re.compile('.*{}.*'.format(orig_query)), '$options': 'i'}
     # find instances of the entered word in title, tags or ingredients
