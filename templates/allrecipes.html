@@ -1,19 +1,34 @@
 {% extends 'base.html'%} {% block content %}
 <div>
-<br>
-<br>
-<h3>all recipes:</h3>
+  <br>
+  <br>
+ 
+  <nav>
+    <div class="nav-wrapper">
+      <form id="search-form" action="{{url_for('search')}}">
+        <div class="input-field">
+          <input id="search" type="search" required placeholder="Search" name="query">
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <h3>all recipes:</h3>
   <ul class="collection">
-  {% for recipe in recipes %}
+    {% for recipe in recipes %}
     <li class="collection-item avatar">
-      <img src="{{url_for('file', filename=recipe['image'] or "https://res.cloudinary.com/dgsqmdssi/image/upload/v1580049398/ccRecipes/cc_logo_mmjt5c.png")}}" alt="recipe-image" class="circle">
+      <img
+        src="{{url_for('file', filename=recipe['image'] or "https://res.cloudinary.com/dgsqmdssi/image/upload/v1580049398/ccRecipes/cc_logo_mmjt5c.png")}}"
+        alt="recipe-image" class="circle">
       <span class="title"><strong><u>{{recipe.recipe_name}}</u></strong></span>
       <p>Category: {{recipe.category_name}} <br>
-         Rating: {{recipe.rating}}
+        Rating: {{recipe.rating}}
       </p>
-      <a href="{{ url_for('recipe', recipe_id=recipe._id)}}" class="secondary-content"><i class="material-icons" id="pageview">pageview</i></a>
+      <a href="{{ url_for('recipe', recipe_id=recipe._id)}}" class="secondary-content"><i class="material-icons"
+          id="pageview">pageview</i></a>
     </li>
-    {% endfor %}    
+    {% endfor %}
   </ul>
 </div>
 {% endblock %}
