@@ -144,25 +144,25 @@ def insert_recipe():
         # fileInput = send_image(cc_logo.png)
         # mongo.save_file(fileInput.filename, fileInput)
 
-    recipes.insert({
-        'recipe_name': request.form.get('recipe_name'),
-        'category_name': request.form.get('category_name'),
-        'author_name': request.form.get('author_name'),
-        'weblink': request.form.get('weblink'),
-        'servings': request.form.get('servings'),
-        'carbs': request.form.get('carbs'),
-        'protein': request.form.get('protein'),
-        'fat': request.form.get('fat'),
-        'prep_time': request.form.get('prep_time'),
-        'cook_time': request.form.get('cook_time'),
-        'total_time': request.form.get('total_time'),
-        'rating': request.form.get('rating'),
-        'image': fileInput.filename,
-        'ingredients': ingredients,
-        'method': methods
-    })
+        recipes.insert({
+            'recipe_name': request.form.get('recipe_name'),
+            'category_name': request.form.get('category_name'),
+            'author_name': request.form.get('author_name'),
+            'weblink': request.form.get('weblink'),
+            'servings': request.form.get('servings'),
+            'carbs': request.form.get('carbs'),
+            'protein': request.form.get('protein'),
+            'fat': request.form.get('fat'),
+            'prep_time': request.form.get('prep_time'),
+            'cook_time': request.form.get('cook_time'),
+            'total_time': request.form.get('total_time'),
+            'rating': request.form.get('rating'),
+            'image': fileInput.filename,
+            'ingredients': ingredients,
+            'method': methods
+        })
 
-    return redirect(url_for('add_recipe'))
+        return redirect(url_for('add_recipe'))
 
 # Code for uploading and downloading images :https://www.youtube.com/watch?v=DsgAuceHha4
 @app.route('/file/<filename>')
@@ -196,27 +196,27 @@ def update_recipe(recipe_id):
     #     fileInput = url_for('static', filename='cc_logo.png')
     #     mongo.save_file(default, fileInput)
 
-    recipes.update({'_id': ObjectId(recipe_id)},
-        {
-            '$set': {
-            'recipe_name': request.form.get('recipe_name'),
-            'category_name': request.form.get('category_name'),
-            'author_name': request.form.get('author_name'),
-            'weblink': request.form.get('weblink'),
-            'rating': request.form.get('rating'),
-            'servings': request.form.get('servings'),
-            'carbs': request.form.get('carbs'),
-            'protein': request.form.get('protein'),
-            'fat': request.form.get('fat'),
-            'prep_time': request.form.get('prep_time'),
-            'cook_time': request.form.get('cook_time'),
-            'total_time': request.form.get('total_time'),
-            'image': fileInput.filename,
-            'ingredients': ingredients,
-            'method': methods}
-        })
-            
-    return redirect(url_for('get_categories'))
+        recipes.update({'_id': ObjectId(recipe_id)},
+            {
+                '$set': {
+                'recipe_name': request.form.get('recipe_name'),
+                'category_name': request.form.get('category_name'),
+                'author_name': request.form.get('author_name'),
+                'weblink': request.form.get('weblink'),
+                'rating': request.form.get('rating'),
+                'servings': request.form.get('servings'),
+                'carbs': request.form.get('carbs'),
+                'protein': request.form.get('protein'),
+                'fat': request.form.get('fat'),
+                'prep_time': request.form.get('prep_time'),
+                'cook_time': request.form.get('cook_time'),
+                'total_time': request.form.get('total_time'),
+                'image': fileInput.filename,
+                'ingredients': ingredients,
+                'method': methods}
+            })
+                
+        return redirect(url_for('get_categories'))
 
 
 @app.route('/delete_recipe/<recipe_id>')
