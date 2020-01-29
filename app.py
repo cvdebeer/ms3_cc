@@ -125,9 +125,9 @@ def giveMet():
 def test_page():
     return render_template(url_for('add_recipe'))
 
-@app.route('/static/<images:path>')
-def send_image(images):
-    return send_from_directory('static', cc_logo.png)
+# @app.route('/static/<images:path>')
+# def send_image(images):
+#     return send_from_directory('static', cc_logo.png)
 
 
 @app.route('/insert_recipe', methods=['POST'])
@@ -141,8 +141,8 @@ def insert_recipe():
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
     else:
-        fileInput = send_image(cc_logo.png)
-        mongo.save_file(fileInput.filename, fileInput)
+        # fileInput = send_image(cc_logo.png)
+        # mongo.save_file(fileInput.filename, fileInput)
 
     recipes.insert({
         'recipe_name': request.form.get('recipe_name'),
