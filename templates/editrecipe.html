@@ -67,7 +67,7 @@
                         <div style="height:0px;overflow:hidden">
                             <input type="file" id="fileInput" name="fileInput" />
                         </div>
-                        <img src="{{url_for('file', filename=recipes['image'] or 'https://res.cloudinary.com/dgsqmdssi/image/upload/v1579434006/ccRecipes/JicJac-Oven_z15gmf.svg')}}" alt="recipe image" id="edit_preview"
+                        <img src="{{url_for('file', filename=recipes['image'] )}}" alt="recipe image" id="edit_preview"
                             width="150px" height="150px">
                     </div>
                     <div class="col s1">
@@ -290,26 +290,6 @@
                 </div>
             </div>
         </div>
-        <!---upload new image -->
-        <!-- <br>
-        <br>
-        <div id="new-image" class='hidden'>
-            <div style="height:0px;overflow:hidden">
-                <input type="file" id="fileInput" name="fileInput" />
-            </div>
-            <img src="{{url_for('file', filename=recipes['image'])}}" id="display-img" width="150px" height="150px">
-            <br>
-            <a id='pic-upload' class="waves-effect waves-light  btn btn-small"><i
-                    class="material-icons left">add_a_photo</i>Upload
-                an image</a>
-                <br>
-                <br>
-                <div class='review_recipe'>
-            <a class="waves-effect waves-light btn review"><i class="material-icons left">refresh</i>Review
-                Recipe</a>
-        </div>
-        </div> -->
-
     </div>
 </form>
 <script src="{{url_for('static', filename='js/edit.js')}}" type='text/javascript'>
