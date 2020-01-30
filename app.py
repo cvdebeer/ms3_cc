@@ -125,11 +125,6 @@ def giveMet():
 def test_page():
     return render_template(url_for('add_recipe'))
 
-# @app.route('/static/<images:path>')
-# def send_image(images):
-#     return send_from_directory('static', cc_logo.png)
-
-
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
@@ -140,10 +135,6 @@ def insert_recipe():
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
-    # else:
-        # fileInput = send_image(cc_logo.png)
-        # mongo.save_file(fileInput.filename, fileInput)
-
         recipes.insert({
             'recipe_name': request.form.get('recipe_name'),
             'category_name': request.form.get('category_name'),
@@ -162,7 +153,7 @@ def insert_recipe():
             'method': methods
         })
 
-        return redirect(url_for('add_recipe'))
+    return redirect(url_for('add_recipe'))
 
 # Code for uploading and downloading images :https://www.youtube.com/watch?v=DsgAuceHha4
 @app.route('/file/<filename>')
@@ -192,10 +183,6 @@ def update_recipe(recipe_id):
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
         mongo.save_file(fileInput.filename, fileInput)
-    # else:
-    #     fileInput = url_for('static', filename='cc_logo.png')
-    #     mongo.save_file(default, fileInput)
-
         recipes.update({'_id': ObjectId(recipe_id)},
             {
                 '$set': {
@@ -216,7 +203,7 @@ def update_recipe(recipe_id):
                 'method': methods}
             })
                 
-        return redirect(url_for('get_categories'))
+    return redirect(url_for('get_categories'))
 
 
 @app.route('/delete_recipe/<recipe_id>')
