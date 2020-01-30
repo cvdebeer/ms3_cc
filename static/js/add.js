@@ -126,14 +126,12 @@ function imageUpload() {
     }
 };
 
-
 function reviewRecipe() {
     addRecipeInfo();
     displayIng.innerHTML = '';
     displayMet.innerHTML = '';
     reviewRec.setAttribute('class', 'visible');
     addMet.setAttribute('class', 'hidden');
-
 
     for (let i = 0; i < screenIng.length; i++) {
         displayIng.insertAdjacentHTML("beforeend",
@@ -144,9 +142,6 @@ function reviewRecipe() {
         displayMet.insertAdjacentHTML('beforeend',
             `<li>${screenMet[m]}</li>`)
     };
-    console.log(ingredients);
-    console.log(methods);
-
 }
 
 function editInfo() {
@@ -183,7 +178,6 @@ function refreshReview() {
     addMet.setAttribute('class', 'hidden');
     newRecipe.setAttribute('class', 'hidden');
     addIng.setAttribute('class', 'hidden');
-
 }
 
 function send() {

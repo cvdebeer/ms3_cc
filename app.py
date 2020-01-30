@@ -5,7 +5,6 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import re
 
-
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'ccRecipes'
 app.config['MONGO_URI'] = os.getenv('MONGO_URI')
@@ -14,7 +13,6 @@ mongo = PyMongo(app)
 
 ingredients = []
 methods = []
-
 
 @app.route('/')
 @app.route('/get_categories')
@@ -54,19 +52,15 @@ def add_recipe():
 '''  Code for communication between JS and python taken from an article https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
  and adapted for use in this app '''
 
-
 @app.route('/getData', methods=['GET', 'POST'])
 def getData():
     ingredients.clear()
     if request.method == 'POST':
         data = request.get_json()
-
-        print(data)
-        print(data['ingredients'])
-        for ingredient in data['ingredients']:
-            print(ingredient)
+        
+        for ingredient in data['ingredients']:            
             ingredients.append(ingredient)
-        print(ingredients)
+       
         return data
 
     else:
@@ -76,7 +70,6 @@ def getData():
 
 @app.route('/giveData', methods=['GET', 'POST'])
 def giveData():
-
     if request.method == 'GET':
         message = ingredients
         return jsonify(message)
@@ -92,9 +85,7 @@ def getMet():
     methods.clear()
     if request.method == 'POST':
         data = request.get_json()
-
-        print(data)
-        print(data['methods'])
+        
         for method in data['methods']:
             print(method)
             methods.append(method)
@@ -102,15 +93,13 @@ def getMet():
         return data
 
     else:
-
         message = "Error!"
         return jsonify(message)
 
 
 @app.route('/giveMet', methods=['GET', 'POST'])
 def giveMet():
-
-    print(methods)
+    
     if request.method == 'GET':
         message = methods
         return jsonify(message)
@@ -120,10 +109,6 @@ def giveMet():
 
     methods.clear()
 
-
-@app.route('/test')
-def test_page():
-    return render_template(url_for('add_recipe'))
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():

@@ -1,12 +1,9 @@
 html,
 body {
-    /* background-color: lightgrey; */
 
     color: #CD1704;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
-
-
 }
 
 h1,
@@ -18,6 +15,10 @@ h6 {
     font-family: 'Playfair Display', serif;
 }
 
+main {
+    margin: 10px;
+}
+
 nav,
 .sidenav {
     box-shadow: none;
@@ -25,7 +26,6 @@ nav,
 
 img {
     max-width: 100%;
-
 }
 
 .btn {
@@ -80,8 +80,6 @@ img {
     display: block;
 }
 
-
-
 /*-------------------------------------header---------------------------------------------*/
 nav {
     background-color: transparent;
@@ -103,7 +101,7 @@ nav {
     }
 }
 
-@media (max-width: 572px) {
+@media (max-width: 704px) {
     #cc-title {
         visibility: hidden;
     }
@@ -131,8 +129,6 @@ nav {
 #tagline {
     color: #CD1704;
 }
-
-
 
 /* ---------------------------------Recipes view page (recipe.html)-------------------------*/
 
@@ -188,6 +184,7 @@ nav {
     margin-left: 10px;
 }
 
+/*-------------------------------------search field--------------------*/
 #search-form {
     background-color: #056B7E;
     max-width: 300px;
@@ -197,4 +194,15 @@ nav {
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+}
+
+/*------------------------------footer--------------------*/
+
+.page-footer {
+    background-color: #039B25;
+    padding-top: 0;
+}
+
+.fa-github {
+    font-size: 40px;
 }

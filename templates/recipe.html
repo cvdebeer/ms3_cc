@@ -1,12 +1,12 @@
 {% extends 'base.html'%} {% block content %}
-
-
 {% for recipe in recipe %}
 <h4>{{recipe.recipe_name}}</h4>
 <br>
 <div class="row">
   <div class="col s12 m3">
-    <img id="img-view" src="{{url_for('file', filename=recipe['image'])}}" onerror="this.onerror=null;this.src='https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg';" width='150px' height='150px'>
+    <img id="img-view" src="{{url_for('file', filename=recipe['image'])}}"
+      onerror="this.onerror=null;this.src='https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg';"
+      width='150px' height='150px'>
   </div>
   <div id="info" class="col s12 m9">
     <div class="recipe-view">
@@ -45,7 +45,7 @@
   </div>
 </div>
 <div class="row">
-  <div  class="recipe-view ing-and-met">
+  <div class="recipe-view ing-and-met">
     <div class="row">
       <h6><u>Ingredients</u></h6>
     </div>
@@ -58,8 +58,8 @@
     <br>
   </div>
 </div>
-<div  id="recipe-methods" class="recipe-view ing-and-met">
-  <div  class="row">
+<div id="recipe-methods" class="recipe-view ing-and-met">
+  <div class="row">
     <h6><u>Methods</u></h6>
   </div>
   <ol>
@@ -72,8 +72,6 @@
     <span> {{ recipe.weblink }} </span>
   </div>
 </div>
-
-
 <div class="fixed-action-btn">
   <a class="btn-floating btn-large blue-tint pulse">
     <i class="large material-icons">build</i>
@@ -88,7 +86,5 @@
         href="{{ url_for('add_recipe') }}"><i class="material-icons">post_add</i></a></li>
   </ul>
 </div>
-
 {% endfor %}
-
 {% endblock %}

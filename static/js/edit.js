@@ -12,8 +12,6 @@ const plusMethod = document.querySelector('#add-met');
 const newImage = document.querySelector('#new-image');
 const submitBtn = document.querySelector('#submitBtn');
 
-
-
 let pic = document.querySelector('#fileInput');
 let addMethod = document.querySelector('#adding-method');
 let displayMet = document.getElementById('display-method');
@@ -33,8 +31,8 @@ function moveToEditIng() {
     reviewRec.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-    displayIng.innerHTML = '';
-    return ingredients = [];
+    addLineIngredient.innerHTML = '';
+    return ingredients = [], screenIng = [];
 }
 
 function moveToEditMet() {
@@ -42,8 +40,8 @@ function moveToEditMet() {
     reviewRec.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editInfo.setAttribute('class', 'hidden');
-    displayMet.innerHTML = '';
-    return methods = [];
+    addMethod.innerHTML = '';
+    return methods = [], screenMet = [];
 }
 
 function moveToEditInfo() {
@@ -60,7 +58,6 @@ function moveToEditImg() {
     editRecMet.setAttribute('class', 'hidden');
 }
 
-
 function updateRecipeInfo() {
     let name = document.getElementById('recipe_name').value;
     let author = document.getElementById('author_name').value;
@@ -74,7 +71,6 @@ function updateRecipeInfo() {
     let fats = document.getElementById('fat').value;
     let pro = document.getElementById('protein').value;
 
-
     document.getElementById('display-r-n').innerHTML = name;
     document.getElementById('display-serve').innerHTML = serve;
     document.getElementById('display-prep').innerHTML = prep;
@@ -86,7 +82,6 @@ function updateRecipeInfo() {
     document.getElementById('display-rating').innerHTML = rate;
     document.getElementById('display-auth').innerHTML = author;
     document.getElementById('display-weblink').innerHTML = weblink;
-
 }
 
 function imageUpload() {
@@ -94,7 +89,6 @@ function imageUpload() {
     /*Code for previewing images found https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display */
     let fileTag = document.getElementById("fileInput"),
         preview = document.getElementById("edit_preview");
-    // display_image = document.getElementById('display-img');
 
     fileTag.addEventListener("change", function () {
         changeImage(this);
@@ -108,7 +102,6 @@ function imageUpload() {
 
             reader.onload = function (e) {
                 preview.setAttribute('src', e.target.result);
-                // display_image.setAttribute('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         }
@@ -149,17 +142,26 @@ function addingMethod() {
         displayMet.insertAdjacentHTML('beforeend',
             `<li>${screenMet[m]}</li>`)
     };
-
 }
 
 function recRev() {
     updateRecipeInfo()
+    displayIng.innerHTML = '';
+    displayMet.innerHTML = '';
     reviewRec.setAttribute('class', 'visible')
     editInfo.setAttribute('class', 'hidden');
     editRecIng.setAttribute('class', 'hidden');
     editRecMet.setAttribute('class', 'hidden');
-    console.log(ingredients);
-    console.log(methods);
+
+    for (let i = 0; i < screenIng.length; i++) {
+        displayIng.insertAdjacentHTML("beforeend",
+            `<li>${screenIng[i].join(' ')}</li>`)
+    };
+
+    for (let m = 0; m < screenMet.length; m++) {
+        displayMet.insertAdjacentHTML('beforeend',
+            `<li>${screenMet[m]}</li>`)
+    };
 }
 
 function send() {
@@ -174,9 +176,11 @@ editInfoBtn.addEventListener('click', moveToEditInfo);
 editImgBtn.addEventListener('click', imageUpload);
 addIngredient.addEventListener('click', addIngLine);
 plusMethod.addEventListener('click', addingMethod);
-submitBtn.addEventListener('click', send)
+submitBtn.addEventListener('click', send);
 
-
+/*  Post and get data for ingredients: */
+/*  Code for communication between JS and python taken from an article https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
+ and adapted for use in this app */
 function getData() {
     fetch('/getData', {
             method: 'POST',
@@ -225,24 +229,16 @@ function getPyIng() {
             return response.json();
         })
         .then(function (json) {
-
-            console.log('GET response as JSON:');
-            console.log(json);
             ingredients = (json[0])
-            console.log(ingredients)
         })
 }
 
 function getPyMet() {
-
     fetch('/giveMet')
         .then(function (response) {
             return response.json();
         })
         .then(function (json) {
-            console.log('GET response as JSON:');
-            console.log(json); // Here’s our JSON object
             methods = (json[0])
-            console.log(methods)
         })
 }
