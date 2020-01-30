@@ -109,7 +109,7 @@ All links and buttons ie. actions are the same colour except in the recipe page 
 
 #### Images
 
-I chose the images for the categories to be bright and welcoming to the User, with ingredients that are friendly to the low carb lifestyle. These are the only images that the user will not be able to change. All other images are provided by the user. All images are courtesy of [pixabay](https://pixabay.com/).  
+I chose the images for the categories to be bright and welcoming to the User, with ingredients that are friendly to the low carb lifestyle. These are the only images that the user will not be able to change. All other images are provided by the user. All images are courtesy of [pixabay](https://pixabay.com/).  Images for recipes were taken from the sites where the recipes were loaded from.
 
 #### Wireframes
 
@@ -132,12 +132,13 @@ Although some elements of my original design did not come to fruition due mainly
 - Once a recipe is selected, it opens on it's own page and options are presented to the User to edit or delete the recipe. The User is also able to select adding a recipe at this time.
 - Should a User choose to edit a recipe they are taken to a 'Review section' where all the information is drawn from the database and presented to them of their recipe. There they can select what part of the recipe they want to edit. Once they are happy with all the information being updated they select the 'Update' button and this then updates the recipe on the database.
 - Should a User chose to 'Delete' a recipe, the User will be returned to the 'Home Page' and the recipe will be removed from the database.
+- User is able to search the site for recipes matching search criteria. They can search for ingredients, names, category or method.  
 
 ### Features still to implement
 
 Due to time constraints, and some issues I ran into during my build planned features not yet implemented are:
 
-- The search functionality allowing to search the database by ingredient, name etc
+- Give the user the ability to reset and or delete ingredients and methods from the input screen.
 - The ability for the User to share the recipe via social media or email.
 - A User dashboard where Users can see recipes by different criteria eg. Author or rating.
 
@@ -184,7 +185,7 @@ I tested the following browsers already installed on my computer (all browsers t
 
 - Chrome- worked with full funtionality and all features working as expected.
 - Edge -  worked with full funtionality and all features working as expected. Edge did pick up errors with missing tags or whitespace etc, which was not picked up by Chrome
-- Mozilla Firefox - Visually everything looked right, but when trying to submit information to Mongo, there was a network error and although it submitted all the form information,the arrays for ingredients and methods were not uploaded. This crashed the recipe when you wanted to edit or view it later. . When I inspected the  
+- Mozilla Firefox - Visually everything looked right, but when trying to submit information to Mongo, there was a network error and although it submitted all the form information,the arrays for ingredients and methods were not uploaded. Sometimes it worked, sometimes it didn't. I recieved a 302 error, which I am aware is due to API issues, but all my attempts to fix this were unsuccessful, owing to my lack of knowledge in this area.
 - Internet Explorer - none of the functionality or features were working.
 - Opera - worked with full funtionality and all features working as expected.
 - Safari- I tested this on the Iphone and Ipad, but unfortunately both had the same issues as Firefox, not loading up ingredients and methods. As I don't know a Mac, I was unable to do debugging on these devices so they are not functional.  
@@ -240,14 +241,16 @@ The following were used for checking my Javascript code:
 
 #### Current bugs
 
-- The biggest visual bug is that if the User doesn't upload and image, then the default image is not loaded and there is no image when the User views the recipe. Also, if you edit the recipe and do not upload a picture it is then overwritten to a blank.
-- On some browsers the ingredients are not loaded to the database when creating a recipe and are also not uploaded when editing a recipe. This causes the system to break as the recipe cannot be accessed anymore for editing, deletion or viewing.
-- Although weblinks can be loaded and edited they cannot be followed to the actual webpage. Jinja is preventing them going to an external website.
+- When recipes are edited and the image is not edited as well, the image is deleted. I tried to work around this by seperating the image editing from the rest of the updating, but this caused both to stop working. I believe this also has to do with my handling of API calls.
+- On some browsers the ingredients are not loaded to the database when creating a recipe and are also not uploaded when editing a recipe. On Firefox and Safari, sometimes it works and sometimes it doesn't. I was unable to fix this issue at this time.
+- Although weblinks can be loaded and edited they cannot be followed to the actual webpage. I believe Jinja is preventing them going to an external website. I haven't had the time to try and resolve this issue.
+- Mobile devices can have issues with the drop down lists, either not selecting or incorrectly selecting options. This can be a little frustrating to Users.  
   
 #### Resolved bugs
 
-- The biggest challenge I faced was trying to get my languages to communicate in order to share information like my arrays for ingredients and methods, and then when they were talking to get the information out in a way that they languages could use them. This was finally solved with the fetch API, and a clever tutor who reminded me how to iterate over a dictionary but doesn't seem to be compatable with Firefox and Safari.
-- I was also having issues being able to sort my recipes by category, from the category selection. This was resolved in a roundabout way by a tutorial I was watching to load up images. We had only been taught to push to a url using an id, but the category didn't work the same way. This caused quite a few days of struggle.
+- The biggest challenge I faced was trying to get my languages to communicate in order to share information like my arrays for ingredients and methods, and then when they were talking to get the information out in a way that they languages could use them. This was finally solved with the fetch API, and a clever tutor who reminded me how to iterate over a dictionary but doesn't seem to be compatable with Firefox and Safari for the most part.  
+- I was also having issues being able to sort my recipes by category, from the category selection. This was resolved in a roundabout way by a tutorial I was watching to load up images. We had only been taught to push to a url using an id, but the category didn't work the same way. This caused quite a few days of struggle.  
+- I had a major issue trying to implement a default image when the User doesn't load an image. As the site is big on displaying images it was crucial for uniformity that there be some kind of representation. I finally solved this with an onerror found on [stackoverflow](https://stackoverflow.com/questions/3984287/how-to-show-alternate-image-if-source-image-is-not-found-onerror-working-in-ie)
 
 ## ![logo](https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg) Deployment
 
