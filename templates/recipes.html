@@ -1,23 +1,25 @@
 {% extends 'base.html'%} {% block content %}
 <div class="row">
-    <h3> {{recipes.category_name}}</h3>
-<div class="row">
- {% for recipe in recipes %}
+  <h3> {{recipes.category_name}}</h3>
+  <div class="row">
+    {% for recipe in recipes %}
     <div class="col s12 m6 l4">
       <div class="card">
-        <div class="card-image">
-          <img src="{{url_for('file', filename=recipe['image'])}}" width="250px" height="250px">
+        <div class="card-image">        
+          <img src="{{url_for('file', filename=recipe['image'])}}" alt="recipe-image" onerror="this.onerror=null;this.src='https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg';" width="250px" height="250px">        
+          
           <span class="card-title"></span>
-          <a href="{{url_for('recipe', recipe_id=recipe._id)}}" class="btn-floating halfway-fab waves-effect waves-light blue-tint"><i class="material-icons">add</i></a>
+          <a href="{{url_for('recipe', recipe_id=recipe._id)}}"
+            class="btn-floating halfway-fab waves-effect waves-light blue-tint"><i class="material-icons">add</i></a>
         </div>
         <div class="card-content">
           <p><strong>{{recipe.recipe_name}}</strong></p>
         </div>
       </div>
     </div>
-    {% endfor %}   
+    {% endfor %}
   </div>
-     
+
 
 </div>
 {% endblock %}

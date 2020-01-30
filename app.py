@@ -32,7 +32,8 @@ def allrecipes():
 @app.route('/get_recipes/<category_name>')
 def get_recipes(category_name):
     all_recipes = mongo.db.recipes.find({'category_name': category_name}).sort('recipe_name')
-    return render_template('recipes.html', recipes=all_recipes)
+    defs=mongo.db.defs.find()
+    return render_template('recipes.html', recipes=all_recipes, defs=defs)
 
 
 @app.route('/recipe/<recipe_id>')
@@ -48,7 +49,8 @@ def add_recipe():
     methods.clear()
     categories = mongo.db.categories.find().sort('category_name')
     ratings = mongo.db.rating.find()
-    return render_template('addrecipe.html', categories=categories, ratings=ratings)
+    defs=mongo.db.defs.find()
+    return render_template('addrecipe.html', categories=categories, ratings=ratings, defs=defs)
 
 
 '''  Code for communication between JS and python taken from an article https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
@@ -131,6 +133,7 @@ def insert_recipe():
     authors = mongo.db.authors
     categories = mongo.db.categories
     rating = mongo.db.rating
+    defs = mongo.db.defs
 # Code for uploading and downloading images :https://www.youtube.com/watch?v=DsgAuceHha4
     if 'fileInput' in request.files:
         fileInput = request.files['fileInput']
