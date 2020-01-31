@@ -140,7 +140,10 @@ Due to time constraints, and some issues I ran into during my build planned feat
 
 - Give the user the ability to reset and or delete ingredients and methods from the input screen.
 - The ability for the User to share the recipe via social media or email.
+- The ability to print the recipe.
 - A User dashboard where Users can see recipes by different criteria eg. Author or rating.
+- Proper validation needs to be done for the form to create and edit recipes.  
+- Flash messages need to done, for warning Users when they are doing things like deleting a recipe or making input errors.
 
 ## ![logo](https://res.cloudinary.com/dgsqmdssi/image/upload/v1580122637/ccRecipes/cc_logo_emcb07.svg) Technologies Used
 
